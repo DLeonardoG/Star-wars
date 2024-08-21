@@ -1,0 +1,40 @@
+.header__nav {
+
+    /* background-image: linear-gradient( #2E3034, #1E1D1D, #000000, #000000); */
+    background-color: #000000;
+    color: white;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+@media (min-width: 550px) and (max-width: 999px){
+
+}
+@media (min-width: 1000px){
+    .header__nav {
+        /* background-image: linear-gradient( #2E3034, #1E1D1D, #000000, #000000); */
+        background-color: #000;
+        color: white;
+        padding: 0;
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: start;
+        margin: 0;
+        box-sizing: border-box;
+        z-index: 2;
+        width: 6vw;
+        height: 100vh;
+        flex-direction: column;
+        left: 0;
+        
+    }
+}
