@@ -1,0 +1,24 @@
+@keyframes background {
+    0%{
+        background-image: url("https://media.giphy.com/media/l1Ku23ofRN4EW5bVe/giphy.gif");
+    }
+    20%{
+        background-image: url("https://steamuserimages-a.akamaihd.net/ugc/276222511136574194/C092ADD8FB14BB88E473EB46FA9974B1E80D286B/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false");
+    }
+    40%{
+        background-image: url("https://sm.ign.com/ign_es/screenshot/default/star-wars-gif-7_tvr7.gif");
+    }
+    60%{
+        background-image: url("https://i0.wp.com/media1.tenor.com/images/a8902e6b860c7911706f85578797fdd0/tenor.gif?w=616&ssl=1");
+    }
+    80%{
+        background-image: url("https://33.media.tumblr.com/7c96bb45176cc6a9c3cd3d55c6a12920/tumblr_mep2ystwbk1rlapeio1_500.gif");
+    }
+    100%{
+        background-image: url("https://media.giphy.com/media/l1Ku23ofRN4EW5bVe/giphy.gif");
+    }
+}
+
+body {
+    animation: background 5s linear both infinite
+}
