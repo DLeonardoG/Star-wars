@@ -43,7 +43,7 @@ async function busqueda_personajes() {
     const lista = document.querySelector("#barSearch")
 
     const personaje = personajes.map(function(personaje){
-        return "<li>"+personaje.name+"  ❌ " + "</li>";
+        return "<li class='itemName'>"+personaje.name+"  ❌ " + "</li>";
     })
     console.log(personaje);
 

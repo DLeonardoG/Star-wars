@@ -1,11 +1,10 @@
-/* :root {
-    font-size: ;
-} */
+:root {
+    font-size: 3vw;
+}
 body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-left: 6vw;
 }
 .fondo {
     display: flex;
@@ -72,6 +71,12 @@ ul, li {
 
 }
 @media (min-width: 1000px){
+    body {
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-left: 6vw;
+    }
     .header__nav {
         /* background-image: linear-gradient( #2E3034, #1E1D1D, #000000, #000000); */
         background-color: #000;
@@ -134,4 +139,8 @@ ul, li {
     .icono__perfil {
         border-radius: 50%;
     }
+}
+.itemName {
+    font-size: 1.5rem;
+    color: #f4f4f4;
 }
