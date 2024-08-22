@@ -71,6 +71,9 @@ ul, li {
 
 }
 @media (min-width: 1000px){
+    :root {
+        font-size: 1vw;
+    }
     body {
         background-attachment: fixed;
         background-repeat: no-repeat;
