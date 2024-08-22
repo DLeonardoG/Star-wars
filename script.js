@@ -7,141 +7,51 @@ const urlSTAR = {
     "starships": "https://swapi.py4e.com/api/starships/",
     "vehicles": "https://swapi.py4e.com/api/vehicles/"
 };
-
-// personajes
-async function people(url) {
+//*********************************************************************
+async function get_data(url) {
     try {
-        const res = await fetch(urlSTAR);
+        const res = await fetch(url);
         if (res.ok) {
-            var stars = await res.json();
-            try {
-                await (function(){
-                    let i = 1
-                    console.log(stars)
-                })()
-            } catch (error) {
-                console.error("Upsss " + error);
-            }
-
+            const stars = await res.json();
+            console.log("Datos obtenidos:", stars.results);
+            return stars;  
+        } else {
+            console.error("Error en la respuesta de la API:", res.status);
         }
     } catch (error) {
-        console.error("error" + error);
+        console.error("Error en la solicitud:", error);
     }
 }
+//---------------------------------------------------
 
-// films
-async function films(url) {
+console.log("bandera inicio")
+
+async function busqueda_personajes() {
+    console.log("Inicio de la búsqueda de personajes");
     try {
-        const res = await fetch(urlSTAR);
-        if (res.ok) {
-            var stars = await res.json();
-            try {
-                await (function(){
-                    let i = 1
-                    console.log(stars)
-                })()
-            } catch (error) {
-                console.error("Upsss " + error);
-            }
-
+        let data = await get_data(urlSTAR.people);
+        var personajes = data.results
+        if (personajes) {
+            console.log("Personajes obtenidos:", personajes);
+        } else {
+            console.log("No se encontraron personajes.");
         }
     } catch (error) {
-        console.error("error" + error);
+        console.error("Ocurrió un error:", error);
     }
+
+    const lista = document.querySelector("#barSearch")
+
+    const personaje = personajes.map(function(personaje){
+        return "<li>"+personaje.name+"  ❌ " + "</li>";
+    })
+    console.log(personaje);
+
+    personaje.forEach(function(element){
+        lista.innerHTML += element;
+    })
+
+
 }
 
-// planets
-async function planets(url) {
-    try {
-        const res = await fetch(urlSTAR);
-        if (res.ok) {
-            var stars = await res.json();
-            try {
-                await (function(){
-                    let i = 1
-                    console.log(stars)
-                })()
-            } catch (error) {
-                console.error("Upsss " + error);
-            }
-
-        }
-    } catch (error) {
-        console.error("error" + error);
-    }
-}
-
-// species
-async function species(url) {
-    try {
-        const res = await fetch(urlSTAR);
-        if (res.ok) {
-            var stars = await res.json();
-            try {
-                await (function(){
-                    let i = 1
-                    console.log(stars)
-                })()
-            } catch (error) {
-                console.error("Upsss " + error);
-            }
-
-        }
-    } catch (error) {
-        console.error("error" + error);
-    }
-}
-
-// starships
-async function starships(url) {
-    try {
-        const res = await fetch(urlSTAR);
-        if (res.ok) {
-            var stars = await res.json();
-            try {
-                await (function(){
-                    let i = 1
-                    console.log(stars)
-                })()
-            } catch (error) {
-                console.error("Upsss " + error);
-            }
-
-        }
-    } catch (error) {
-        console.error("error" + error);
-    }
-}
-
-// vehicles
-async function vehicles(url) {
-    try {
-        const res = await fetch(urlSTAR);
-        if (res.ok) {
-            var stars = await res.json();
-            try {
-                await (function(){
-                    let i = 1
-                    console.log(stars)
-                })()
-            } catch (error) {
-                console.error("Upsss " + error);
-            }
-
-        }
-    } catch (error) {
-        console.error("error" + error);
-    }
-}
-
-people(urlSTAR.people)
-
-films(urlSTAR.films)
-
-planets(urlSTAR.planets)
-
-species(urlSTAR.species)
-
-starships(urlSTAR.starships)
-
-vehicles(urlSTAR.vehicles)
+busqueda_personajes()
