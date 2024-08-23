@@ -65,6 +65,33 @@ ul, li {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-style: normal;
+}
+a {
+    text-decoration: none;
+}
+.navSecundarioItem {
+    margin-right: 3%;
+    margin-left: 3%;
+    flex-basis: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    background-color: #3182CE;
+    padding: 1vh 2vw;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+    color: white;
+    font-weight: bold;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.1vw;
+    font-weight: bold;
+    font-style: normal;
 }
 
 @media (min-width: 550px) and (max-width: 999px){
@@ -78,8 +105,11 @@ ul, li {
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
+        margin: 0;
         margin-left: 6vw;
+        padding: 0;
     }
+
     .header__nav {
         /* background-image: linear-gradient( #2E3034, #1E1D1D, #000000, #000000); */
         background-color: #000;
@@ -142,6 +172,37 @@ ul, li {
     .icono__perfil {
         border-radius: 50%;
     }
+    .navPersonajes {
+        font-size: 0.8rem;
+    }
+    .navSecundario {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        box-sizing: border-box;
+        border-bottom: #000 solid 10px;
+        width: 100%;
+        background-color: #000;
+
+    }
+    .navSecundarioItem {
+        border-radius: 0;
+        background-color: transparent;
+        padding: 1vh 2vw;
+        border: none;
+        cursor: pointer;
+        box-shadow: none;
+        color: white;
+        font-weight: normal;
+        font-style: normal;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1vw;
+        font-size: 1.6rem;
+        margin: 0;
+    }
+    
 }
 .itemName {
     font-size: 1.5rem;
