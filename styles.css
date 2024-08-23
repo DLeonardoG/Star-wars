@@ -47,10 +47,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-.nav__button--perfil {
-    margin: 0;
-    padding: 0;
-}
 .nav__img {
     max-width: 8vw;
     padding: 0;
@@ -63,9 +59,12 @@ body {
 }
 ul, li {
     list-style: none;
+    font-style: normal;
     padding: 0;
     margin: 0;
-    font-style: normal;
+}
+.nav__button:hover {
+    background-color: #3182CE;
 }
 a {
     text-decoration: none;
@@ -181,6 +180,7 @@ a {
         justify-content: center;
         align-items: center;
         margin: 0;
+        padding: 0;
         box-sizing: border-box;
         border-bottom: #000 solid 10px;
         width: 100%;
@@ -198,11 +198,15 @@ a {
         font-weight: normal;
         font-style: normal;
         font-family: 'Montserrat', sans-serif;
-        letter-spacing: 1vw;
+        letter-spacing: 0.5vw;
         font-size: 1.6rem;
         margin: 0;
+        border-bottom: transparent solid 0.4vh;
+
     }
-    
+    .navSecundarioItem:hover {
+        border-bottom: white solid 0.4vh;
+    }
 }
 .itemName {
     font-size: 1.5rem;
