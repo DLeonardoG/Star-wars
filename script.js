@@ -1,7 +1,5 @@
 const contenedorElemento = document.querySelector("#contenedor-elementos")
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
-
-
 const consultasBarra = document.getElementById("barra-consultas");
 
 const urlSTAR = {
@@ -28,9 +26,7 @@ async function get_data(url) {
     }
 }
 //---------------------------------------------------
-
-console.log("bandera inicio")
-
+// ESTA BUSQUEDA FUNCIONA A LA PERFECCION, REALIZAR UNA POR CADA UNO DE LOS CINCO PARA MOSTRAR TODAS DESPUES DE ESO FILTRAMOS
 async function busqueda_personajes() {
     console.log("Inicio de la búsqueda de personajes");
     try {
@@ -44,6 +40,7 @@ async function busqueda_personajes() {
     } catch (error) {
         console.error("Ocurrió un error:", error);
     }
+    // AQUI SE DIBUJAN LOS ELEMENTOS CON EL FOR EACH PARA MEJOR SINTAXIS Y PORQUE ESTA MAS CHIMBA MMH
     personajes.forEach( (element) => {
         const div = document.createElement("div");
         div.classList.add("elemento");
@@ -72,25 +69,19 @@ hacerConsultasBarra("peliculas");
 agregarEventoConsultas()
 botonesCategorias.forEach(boton => {
     boton.addEventListener("click", (e) => {
-
         botonesCategorias.forEach(boton => boton.classList.remove("active"));
         e.currentTarget.classList.add("active");
         if (e.currentTarget.id != "peliculas") {
             hacerConsultasBarra(e.currentTarget.id);
             agregarEventoConsultas()
-            // const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
-            // tituloPrincipal.innerText = productoCategoria.categoria.nombre;
-            // const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
-            // cargarProductos(productosBoton);
+            // AQUI SE MUESTRA LA CONSULTA DE TODOS LOS ELEMENTOS DE ESTE ITEM EN ESPECIFICO MAMAHUEVO
         } else {
                 hacerConsultasBarra(e.currentTarget.id);
                 agregarEventoConsultas()
+                // AQUI TODOS LOS DE PELICULAS DE ESTE ITEM EN ESPECIFICO MMH
             }
         });
     });
-    console.log("entrar")
-    console.log(botonesCategoriasConsulta)
-    
     function agregarEventoConsultas () {
         const botonesCategoriasConsulta = document.querySelectorAll(".boton-categoria-consulta");
         botonesCategoriasConsulta.forEach(boton => {
@@ -98,21 +89,25 @@ botonesCategorias.forEach(boton => {
                 botonesCategoriasConsulta.forEach(boton => boton.classList.remove("active-consulta"));
                 e.currentTarget.classList.add("active-consulta");
                 console.log( e.currentTarget)
-                
+
+                // DE AQUI PARA ABAJO SE HACEN LAS CONSULTAS POR EL SUB ELEMENTO DE LA SUBLISTA
+                const prueba = document.createElement("div");
+                prueba.classList.add("elemento");
+                prueba.innerHTML = ""
+                prueba.innerHTML =  `
+                <h2>${e.currentTarget.id}</h2>`
+                console.log(prueba)
+                contenedorElemento.prepend(prueba)
             });
     });
     }
-    
+// ESTA FUNCION HACE LAS SUBCONSULTAS DE LA PAGINA DE LA 1 A LA 4 PARA PODER REALIZAR LAS ADECUADAS, HAY QUE PERSONALIZARLA YA SEA CON UN ARRAY Y SE LE HACE FOREACH O ALGO ASI PARA PODER REALIZARLA AUTOMATICA
 function hacerConsultasBarra (parametro){
     consultasBarra.innerHTML = ``
     for (let i = 1; i < 5; i++) {
         consultasBarra.innerHTML += `
         <li>
             <button id="${parametro + i}" class="boton-menu-consulta boton-categoria-consulta"><span>${parametro + " " + i}</span></button>
-        </li>
-        `
+        </li>`
     }
-
 }
-
-
