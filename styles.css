@@ -1,214 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
 :root {
-    font-size: 3vw;
+    --clr-main: #d0f04f;
+    --clr-main-light: #f35c05;
+    --clr-white: #ececec;
+    --clr-gray: #e2e2e2;
+    --clr-red: #961818;
+    --clr-black: #1e1c1c;
 }
-body {
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, input, textarea {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 15fr;
+    background-color: var(--clr-gray);
+}
+aside {
+    background-color: var(--clr-black);
+    padding: 0.1rem;
+    padding-right: 0;
+    color: var(--clr-white);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* BOTON MENU LATERAL */
+.boton-menu {
+    background-color: transparent;
+    border: 0;
+    color: var(--clr-white);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    font-weight: 400;
+    padding: 0;
+    font-size: 0.9rem;
+    width: 100%;
+    color: var(--clr-white);
+}
+.boton-menu-cabe {
+    background-color: transparent;
+    border: 0;
+    color: var(--clr-white);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    font-weight: 400;
+    padding: 0;
+    font-size: 0.9rem;
+    width: 100%;
+    color: var(--clr-white);
+}
+.boton-menu.active {
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+    border-radius: 0.5rem;
+}
+.imagenMenu {
+    width: 80%;
+    object-fit: cover;
+}
+
+/* BARRA CONSULTAS */ 
+.barra-cosultas {
+    background-color: var(--clr-black);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    margin: 0;
+    position: sticky;
+    top: 0px;
+}
+.boton-menu-consulta {
+    background-color: transparent;
+    border: 0;
+    color: var(--clr-white);
+    cursor: pointer;
+    margin: 0;
+    font-weight: 400;
+    padding: 0.6rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+}
+.boton-menu-consulta.active-consulta {
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+    border-radius: 0.1rem;
+}
+.logo-star-wars{
+    width: 100%;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--clr-black);
+    background-image: url("https://pa1.aminoapps.com/7311/fc6a582d2c6ccafe8f9904a985118d16550996afr4-500-500_00.gif");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.fondo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #000;
-    opacity: 0.7;
-}
-.header__nav {
-    /* background-image: linear-gradient( #2E3034, #1E1D1D, #000000, #000000); */
-    background-color: #000000;
-    color: white;
+
+
+main {
+    background-color: var(--clr-main-light);
+    margin: 0;
     padding: 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 0;
-    box-sizing: border-box;
-    z-index: 2;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
 }
-.nav__button {
-    background-color: transparent;
-    color: white;
-    padding: 0.5vh 6vw;
-    border: none;
-    border-radius: none;
-    cursor: pointer;
-    margin: 0;
+.titulo-principal {
+    color: var(--clr-main-light);
+    margin-bottom: 2rem;
+}
+
+
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 1% 5%;
+}
+
+.producto-imagen {
+    max-width: 100%;
+    border-radius: 1rem;
+}
+
+.producto-detalles {
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    padding: .5rem;
+    border-radius: 1rem;
+    margin-top: -2rem;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: .25rem;
 }
-.nav__img {
-    max-width: 8vw;
-    padding: 0;
-    margin: 0;
+
+.producto-titulo {
+    font-size: 1rem;
 }
-.nav__span {
-    font-size: 0.6rem;
-    margin: 0;
-    padding: 0;
-}
-ul, li {
-    list-style: none;
-    font-style: normal;
-    padding: 0;
-    margin: 0;
-}
-.nav__button:hover {
-    background-color: #3182CE;
-}
-a {
-    text-decoration: none;
-}
-.navSecundarioItem {
-    margin-right: 3%;
-    margin-left: 3%;
-    flex-basis: 33%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10%;
-    background-color: #3182CE;
-    padding: 1vh 2vw;
-    border: none;
+
+.producto-agregar {
+    border: 0;
+    background-color: var(--clr-black);
+    color: var(--clr-main);
+    padding: .4rem;
+    text-transform: uppercase;
+    border-radius: 2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 0 1vh rgba(0,0,0,0.5);
-    color: white;
-    font-weight: bold;
-    font-style: normal;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.1vw;
-    font-weight: bold;
-    font-style: normal;
+    border: 2px solid var(--clr-white);
+    transition: background-color .2s, color .2s;
 }
 
-@media (min-width: 550px) and (max-width: 999px){
-
+.producto-agregar:hover {
+    background-color: var(--clr-main);
+    color: var(--clr-white);
 }
-@media (min-width: 1000px){
-    :root {
-        font-size: 1vw;
-    }
-    body {
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
-        margin: 0;
-        margin-left: 6vw;
-        padding: 0;
-    }
 
-    .header__nav {
-        /* background-image: linear-gradient( #2E3034, #1E1D1D, #000000, #000000); */
-        background-color: #000;
-        color: white;
-        padding: 0;
-        position: fixed;
-        bottom: 0;
-        display: flex;
-        justify-content: start;
-        margin: 0;
-        box-sizing: border-box;
-        z-index: 2;
-        width: 6vw;
-        height: 100vh;
-        flex-direction: column;
-        left: 0;
-        
-    }
-    .nav__button {
-        background-color: transparent;
-        color: white;
-        padding: 2.5vh 0.9vw;
-        border: none;
-        border-radius: none;
-        cursor: pointer;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .nav__button--perfil {
-        margin: 0;
-        padding: 0;
-    }
-    .nav__img {
-        max-width: 4vw;
-        padding: 0;
-        margin: 0;
-    }
-    .nav__span {
-        font-size: 1rem;
-        margin: 0;
-        padding: 0;
-    }
-    .nav__span--azul {
-        color: #3182CE;
-        font-weight: bold;
-    }
-    .nav__icono--peliculas {
-        padding: 0;
-        border-bottom: 0.5vh #f4f4f4 solid;
-        border-bottom-right-radius: 1%;
-        border-bottom-left-radius: 1%;
-    }
-    .accion,.animacion {
-        margin-bottom: 9%;
-        margin-top: 4%;
-    }
-    .icono__perfil {
-        border-radius: 50%;
-    }
-    .navPersonajes {
-        font-size: 0.8rem;
-    }
-    .navSecundario {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        border-bottom: #000 solid 10px;
-        width: 100%;
-        background-color: #000;
-
-    }
-    .navSecundarioItem {
-        border-radius: 0;
-        background-color: transparent;
-        padding: 1vh 2vw;
-        border: none;
-        cursor: pointer;
-        box-shadow: none;
-        color: white;
-        font-weight: normal;
-        font-style: normal;
-        font-family: 'Montserrat', sans-serif;
-        letter-spacing: 0.5vw;
-        font-size: 1.6rem;
-        margin: 0;
-        border-bottom: transparent solid 0.4vh;
-
-    }
-    .navSecundarioItem:hover {
-        border-bottom: white solid 0.4vh;
-    }
-}
-.itemName {
-    font-size: 1.5rem;
-    color: #f4f4f4;
-}
