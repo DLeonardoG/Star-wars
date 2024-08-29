@@ -1,3 +1,4 @@
+
 const contenedorElemento = document.querySelector("#contenedor-elementos")
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const consultasBarra = document.getElementById("barra-consultas");
@@ -46,20 +47,13 @@ async function busqueda_personajes() {
         div.classList.add("elemento");
         div.innerHTML = `
                     <h2>${element.name}</h2>
-                    <h3>Altura</h3>
-                    <p class="Altura">${element.height}</p>
-                    <h3>Masa</h3>
-                    <p class="Masa">${element.mass}</p>
-                    <h3>Color de pelo</h3>
-                    <p class="Color_de_pelo">${element.hair_color}</p>
-                    <h3>Color de piel</h3>
-                    <p class="Color_de_piel">${element.skin_color}</p>
-                    <h3>Color de ojos</h3>
-                    <p class="Color_de_ojos">${element.eye_color}</p>
-                    <h3>Año de nacimiento</h3>
-                    <p class="Año_de_nacimiento">${element.birth_year}</p>
-                    <h3>Genero</h3>
-                    <p class="Genero">${element.gender}</p>
+                    <p class="Altura"><strong>Altura:</strong> ${element.height}</p>
+                    <p class="Masa"><strong>Masa:</strong> ${element.mass}</p>
+                    <p class="Color_de_pelo"><strong>Color de pelo:</strong> ${element.hair_color}</p>
+                    <p class="Color_de_piel"><strong>Color de piel:</strong> ${element.skin_color}</p>
+                    <p class="Color_de_ojos"><strong>Color de ojos:</strong> ${element.eye_color}</p>
+                    <p class="Año_de_nacimiento"><strong>fecha de nacimiento: </strong>${element.birth_year}</p>
+                    <p class=""><strong>Genero: </strong>${element.gender}</p>
         `;
         contenedorElemento.append(div);
     })
