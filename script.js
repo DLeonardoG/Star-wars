@@ -12,7 +12,7 @@ const urlSTAR = {
     "species": "https://swapi.py4e.com/api/species/",
     "starships": "https://swapi.py4e.com/api/starships/",
     "vehicles": "https://swapi.py4e.com/api/vehicles/",
-    "planets" : "https://swapi.py4e.com/api/planets/"
+    "planets": "https://swapi.py4e.com/api/planets/"
 };
 //*********************************************************************
 async function get_data(url) {
