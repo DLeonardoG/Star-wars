@@ -62,7 +62,6 @@ function botonesCategoriasFuncion(){
             break;
           case "naves":
             show_all_starships();
-            const consultasNaves = ["Pilotos", "Pasajeros", "MGLT", "Manufacturer"];
             prod = generarObjeto("pilotos","Pilotos", colorOjos)
             consultasNaves.push(prod)
             prod = generarObjeto("pasajeros","Pasajeros", colorOjos)
