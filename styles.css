@@ -37,7 +37,7 @@ aside {
     color: var(--clr-white);
     position: sticky;
     top: 0;
-    max-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
