@@ -2,167 +2,161 @@ const contenedorElemento = document.querySelector("#contenedor-elementos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const consultasBarra = document.getElementById("barra-consultas");
 
-const urlSTAR = {
-  films: "https://swapi.py4e.com/api/films/",
-  people: "https://swapi.py4e.com/api/people/",
-  planets: "https://swapi.py4e.com/api/planets/",
-  species: "https://swapi.py4e.com/api/species/",
-  starships: "https://swapi.py4e.com/api/starships/",
-  vehicles: "https://swapi.py4e.com/api/vehicles/",
-  planets: "https://swapi.py4e.com/api/planets/",
-};
+const urlSTAR = [
+    "https://swapi.py4e.com/api/films/",         //0
+    "https://swapi.py4e.com/api/people/",         //1
+    "https://swapi.py4e.com/api/planets/",         //2
+    "https://swapi.py4e.com/api/species/",         //3
+    "https://swapi.py4e.com/api/starships/",         //4
+    "https://swapi.py4e.com/api/vehicles/",         //5
+];
+//*********************************************************************
 async function get_data(url) {
-  try {
-    console.log("OBTENCION DE DATOS GET_DATA");
-    const res = await fetch(url);
-    if (res.ok) {
-      const stars = await res.json();
-      console.log("Datos obtenidos:", stars.results);
-      return stars;
-    } else {
-      console.error("Error en la respuesta de la API:", res.status);
-    }
-  } catch (error) {
-    console.error("Error en la solicitud:", error);
-  }
-}
-//************ GENERA TODA LA PAGINA *********************************************
-function botonesCategoriasFuncion(){
-    botonesCategorias.forEach((boton) => {
-      boton.addEventListener("click", (e) => {
-        botonesCategorias.forEach((boton) => boton.classList.remove("active"));
-        e.currentTarget.classList.add("active");
-        let per = e.currentTarget.id;
-        function generarObjeto(item, name, fun){ 
-            const consultasPersonajes = { id: item, nombre: name, funcion: fun };
-            return consultasPersonajes;
-        };
-        let prod;
-        switch (per) {
-          case "peliculas":
-            show_all_films();
-            console.log("Consulta de peliculas");
-            const consultasPeliculas = ["Titulo", "Fecha", "Director", "Episodio"];
-            hacerConsultasBarra(consultasPeliculas);
-            agregarEventoConsultas();
-            break;
-          case "personajes":
-            show_all_characters();
-            const consultasPersonajes = [];
-            prod = generarObjeto("color_de_ojos","Color de ojos", colorOjos)
-            consultasPersonajes.push(prod)
-            prod = generarObjeto("color_de_piel","Color de piel", colorOjos)
-            consultasPersonajes.push(prod)
-            prod = generarObjeto("Color_de_pelo","Color de pelo",colorOjos)
-            consultasPersonajes.push(prod)
-            prod = generarObjeto("genero","Genero",colorOjos)
-            consultasPersonajes.push(prod)
-            hacerConsultasBarra(consultasPersonajes);
-            agregarEventoConsultas(consultasPersonajes);
-            break;
-          case "naves":
-            show_all_starships();
-            prod = generarObjeto("pilotos","Pilotos", colorOjos)
-            consultasNaves.push(prod)
-            prod = generarObjeto("pasajeros","Pasajeros", colorOjos)
-            consultasNaves.push(prod)
-            prod = generarObjeto("mglt","MGLT", colorOjos)
-            consultasNaves.push(prod)
-            prod = generarObjeto("manufacturer","Manufacturer", colorOjos)
-            consultasNaves.push(prod)
-            hacerConsultasBarra(consultasNaves);
-            agregarEventoConsultas(consultasNaves);
-            break;
-          case "especies":
-            show_all_species();
-            const consultasEspecies = [
-              "Clasificacion",
-              "Skin color",
-              "Language",
-              "Planeta",
-            ];
-            hacerConsultasBarra(consultasEspecies);
-            agregarEventoConsultas();
-            break;
-          case "vehiculos":
-            show_all_vehicles();
-            const consultasVehiculos = [
-              "Color de ojos",
-              "Color de piel",
-              "Genero",
-              "Color de pelo",
-            ];
-            hacerConsultasBarra(consultasVehiculos);
-            agregarEventoConsultas();
-            break;
-          case "planetas":
-            show_all_planets();
-            const consultasPlanetas = ["Poblacion", "Diametro", "Clima", "Terreno"];
-            hacerConsultasBarra(consultasPlanetas);
-            agregarEventoConsultas();
-            break;
-          default:
-            console.log("Error en la categoría seleccionada");
+    try {
+        console.log("OBTENCION DE DATOS GET_DATA");
+        const res = await fetch(url);
+        console.log(url)
+        if (res.ok) {
+            const stars = await res.json();
+            // console.log("Datos obtenidos:", stars.results);
+            return stars;
+        } else {
+            console.error("Error en la respuesta de la API:", res.status);
         }
-      });
-    });
-};
-function hacerConsultasBarra(array) {
-    consultasBarra.innerHTML = ``;
-    array.forEach((elemento) => {
-      consultasBarra.innerHTML += `
-          <li>
-              <button id="${elemento.id}" class="boton-menu-consulta boton-categoria-consulta"><span>${elemento.nombre}</span></button>
-          </li>`;
-    });
-  };
-function agregarEventoConsultas(info) {
-  const botonesCategoriasConsulta = document.querySelectorAll(
-    ".boton-categoria-consulta"
-  );
-  botonesCategoriasConsulta.forEach((boton) => {
-    boton.addEventListener("click", (e) => {
-      botonesCategoriasConsulta.forEach((boton) =>
-        boton.classList.remove("active-consulta")
-      );
-      e.currentTarget.classList.add("active-consulta");
-      console.log(info);
-      // DE AQUI PARA ABAJO SE HACEN LAS CONSULTAS POR EL SUB ELEMENTO DE LA SUBLISTA
-        info.forEach((ele)=> {
-            if (ele.id === e.currentTarget.id){
-                console.log(ele.funcion);
-                ele.funcion();
-            }
-        })
-    });
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+    }
+}
+//---------------------------------------------------
+botonesCategorias.forEach((boton) => {
+  boton.addEventListener("click", (e) => {
+    botonesCategorias.forEach((boton) => boton.classList.remove("active"));
+    e.currentTarget.classList.add("active");
+    let per = e.currentTarget.id;
+    switch (per) {
+      case "peliculas":
+        show_all_films();
+        console.log("Consulta de peliculas");
+        const consultasPeliculas = ["Titulo", "Fecha", "Director", "Episodio"];
+        hacerConsultasBarra(consultasPeliculas);
+        agregarEventoConsultas();
+        break;
+      case "personajes":
+        show_all_characters();
+        const consultasPersonajes = [
+          {
+            id: "Color_de_ojos",
+            nombre:"Color de ojos",
+            funcion: function(){
+                contenedorElemento.innerHTML = "";
+            },
+          },
+          {
+            id: "Color_de_piel",
+            nombre:"Color de piel",
+            funcion: color_de_piel,
+          },
+          {
+            id: "Genero",
+            nombre: "Genero",
+            funcion: function(){
+                contenedorElemento.innerHTML = "";
+            },
+          },
+          {
+            id: "Color_de_pelo",
+            nombre: "Color de pelo",
+            funcion: function(){
+                contenedorElemento.innerHTML = "";
+            },
+          },
+        ];
+        hacerConsultasBarra(consultasPersonajes);
+        agregarEventoConsultas(consultasPersonajes);
+        break;
+      case "naves":
+        show_all_starships();
+        const consultasNaves = ["Pilotos", "Pasajeros", "MGLT", "Manufacturer"];
+        hacerConsultasBarra(consultasNaves);
+        agregarEventoConsultas();
+        break;
+      case "especies":
+        show_all_species();
+        const consultasEspecies = [
+          "Clasificacion",
+          "Skin color",
+          "Language",
+          "Planeta",
+        ];
+        hacerConsultasBarra(consultasEspecies);
+        agregarEventoConsultas();
+        break;
+      case "vehiculos":
+        show_all_vehicles();
+        const consultasVehiculos = [
+          "Color de ojos",
+          "Color de piel",
+          "Genero",
+          "Color de pelo",
+        ];
+        hacerConsultasBarra(consultasVehiculos);
+        agregarEventoConsultas();
+        break;
+      case "planetas":
+        show_all_planets();
+        const consultasPlanetas = ["Poblacion", "Diametro", "Clima", "Terreno"];
+        hacerConsultasBarra(consultasPlanetas);
+        agregarEventoConsultas();
+        break;
+      default:
+        console.log("Error en la categoría seleccionada");
+    }
   });
+});
+
+function agregarEventoConsultas(info) {
+    const botonesCategoriasConsulta = document.querySelectorAll(
+        ".boton-categoria-consulta"
+    );
+    botonesCategoriasConsulta.forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            botonesCategoriasConsulta.forEach((boton) =>
+                boton.classList.remove("active-consulta")
+            );
+            e.currentTarget.classList.add("active-consulta");
+            console.log(info);
+            // DE AQUI PARA ABAJO SE HACEN LAS CONSULTAS POR EL SUB ELEMENTO DE LA SUBLISTA
+            info.forEach((ele) => {
+                if (ele.id === e.currentTarget.id) {
+                    console.log(ele.funcion);
+                    ele.funcion();
+                }
+            })
+        });
+    });
 }
 
-// ***************************************************************
-//*PERSONAJES*****************************************************
-// *************************************************************
+function hacerConsultasBarra(array) {
+  consultasBarra.innerHTML = ``;
+  array.forEach((elemento) => {
+    consultasBarra.innerHTML += `
+        <li>
+            <button id="${elemento.id}" class="boton-menu-consulta boton-categoria-consulta"><span>${elemento.nombre}</span></button>
+        </li>`;
+  });
+}
+//*PERSONAJES**************************************************
 async function show_all_characters() {
-  console.log("Inicio de la búsqueda de personajes");
-  var personajes = [];
-  console.log("Inicio de la búsqueda de personajes");
-  for (let i = 1; i <= 9; i++) {
-    try {
-      let datos = await get_data(urlSTAR.people + "/?page=" + i);
-      let data = datos.results;
-      for (let j = 0; j < data.length; j++) {
-        let element = data[j];
-        personajes.push(element);
-      }
-    } catch (error) {
-      console.error("Ocurrió un error:", error);
-    }
-  }
-  // AQUI SE DIBUJAN LOS ELEMENTOS CON EL FOR EACH PARA MEJOR SINTAXIS Y PORQUE ESTA MAS CHIMBA MMH
-  contenedorElemento.innerHTML = "";
-  personajes.forEach((element) => {
-    const div = document.createElement("div");
-    div.classList.add("elemento");
-    div.innerHTML = `
+    let personajes
+    console.log("Inicio de la búsqueda de personajes");
+    console.log("Inicio de la búsqueda de personajes");
+    personajes = await call_data(9, 1)
+    // AQUI SE DIBUJAN LOS ELEMENTOS CON EL FOR EACH PARA MEJOR SINTAXIS Y PORQUE ESTA MAS CHIMBA MMH
+    contenedorElemento.innerHTML = "";
+    personajes.forEach((element) => {
+        const div = document.createElement("div");
+        div.classList.add("elemento");
+        div.innerHTML = `
                     <h2>${element.name}</h2>
                     <p class="Altura"><strong>Altura:</strong> ${element.height}</p>
                     <p class="Masa"><strong>Masa:</strong> ${element.mass}</p>
@@ -172,27 +166,44 @@ async function show_all_characters() {
                     <p class="Año_de_nacimiento"><strong>fecha de nacimiento: </strong>${element.birth_year}</p>
                     <p class="genero"><strong>Genero: </strong>${element.gender}</p>
         `;
-    contenedorElemento.append(div);
-  });
+        contenedorElemento.append(div);
+    });
+    return personajes;
 }
+
+// filtro por color de ojos
+
+async function opciones() {
+    let personajes = await call_data(9, 1)
+
+    let opciones = [];
+    contenedorElemento.innerHTML = ""
+    console.log(personajes)
+    function extraer_datos(array) {
+        array.forEach(element => {
+            if (!opciones.includes(element.eye_color)) {
+                opciones.push(element.eye_color);
+            }
+        });
+    }
+    extraer_datos(personajes);
+    console.log(opciones)
+
+    console.log(personajes.filter(p => p.eye_color === "blue"))
+
+}
+
+
 //*peliculas**************************************************
 async function show_all_films() {
-  var peliculas = [];
-  console.log("Inicio de la búsqueda de PELICULAS");
-  contenedorElemento.innerHTML = "";
-  for (let i = 1; i <= 7; i++) {
-    try {
-      let data = await get_data(urlSTAR.films + "/" + i + "/");
-      peliculas.push(data);
-    } catch (error) {
-      console.error("Ocurrió un error:", error);
-    }
-  }
-  if (peliculas.length > 0) {
-    peliculas.forEach((element) => {
-      const div = document.createElement("div");
-      div.classList.add("elemento");
-      div.innerHTML = `
+    let peliculas;
+    contenedorElemento.innerHTML = ""
+    peliculas = await call_data(7, 0)
+    if (peliculas.length > 0) {
+        peliculas.forEach((element) => {
+            const div = document.createElement("div");
+            div.classList.add("elemento");
+            div.innerHTML = `
                 <h2>${element.title}</h2>
                 <p><br><strong>Episode ID:</strong> ${element.episode_id}</p>
                 <p><strong>Director:</strong> ${element.director}</p>
@@ -200,36 +211,25 @@ async function show_all_films() {
                 <p><strong>Release Date:</strong> ${element.release_date}</p>
                 <p><strong>synopsis:<br></strong> ${element.opening_crawl}</p>
             `;
-      contenedorElemento.append(div);
-    });
-  } else {
-    console.log("No se encontraron películas.");
-  }
+            contenedorElemento.append(div);
+        });
+    } else {
+        console.log("No se encontraron películas.");
+    }
 }
 //*NAVES**************************************************
 async function show_all_starships() {
-  var naves = [];
-  console.log("Inicio de la búsqueda de PELICULAS");
-  for (let i = 1; i <= 4; i++) {
-    try {
-      let datos = await get_data(urlSTAR.starships + "/?page=" + i);
-      let data = datos.results;
-      for (let j = 0; j < data.length; j++) {
-        let element = data[j];
-        naves.push(element);
-      }
-    } catch (error) {
-      console.error("Ocurrió un error:", error);
-    }
-  }
-  console.log(naves);
-  if (naves.length > 0) {
-    contenedorElemento.innerHTML = "";
+    let naves;
+    //obtener informacion
+    naves = await call_data(4,4)
+    console.log(naves);
+    if (naves.length > 0) {
+        contenedorElemento.innerHTML = "";
 
-    naves.forEach((element) => {
-      const div = document.createElement("div");
-      div.classList.add("elemento");
-      div.innerHTML = `
+        naves.forEach((element) => {
+            const div = document.createElement("div");
+            div.classList.add("elemento");
+            div.innerHTML = `
                 <h2>${element.name}</h2>
                 <p><br><strong>model:</strong> ${element.model}</p>
                 <p><strong>manufacturer:</strong> ${element.manufacturer}</p>
@@ -240,30 +240,23 @@ async function show_all_starships() {
                 <p><strong>cargo capacity:</strong> ${element.cargo_capacity}</p>
                 <p><strong>MGLT:</strong> ${element.MGLT}</p>
             `;
-      contenedorElemento.append(div);
-    });
-  } else {
-    console.log("No se encontraron películas.");
-  }
+            contenedorElemento.append(div);
+        });
+    } else {
+        console.log("No se encontraron películas.");
+    }
 }
 //*ESPECIES**************************************************
 async function show_all_species() {
-  var especies = [];
-  console.log("Inicio de la búsqueda de PELICULAS");
-  contenedorElemento.innerHTML = "";
-  for (let i = 1; i <= 37; i++) {
-    try {
-      let data = await get_data(urlSTAR.species + "/" + i + "/");
-      especies.push(data);
-    } catch (error) {
-      console.error("Ocurrió un error:", error);
-    }
-  }
-  if (especies.length > 0) {
-    especies.forEach((element) => {
-      const div = document.createElement("div");
-      div.classList.add("elemento");
-      div.innerHTML = `
+    var especies;
+    console.log("Inicio de la búsqueda de PELICULAS");
+    contenedorElemento.innerHTML = "";
+    especies = await call_data(37, 3)
+    if (especies.length > 0) {
+        especies.forEach((element) => {
+            const div = document.createElement("div");
+            div.classList.add("elemento");
+            div.innerHTML = `
                 <h2>${element.name}</h2>
                 <p><br><strong>classification:</strong> ${element.classification}</p>
                 <p><strong>designation:</strong> ${element.designation}</p>
@@ -274,36 +267,25 @@ async function show_all_species() {
                 <p><strong>average lifespan:</strong> ${element.average_lifespan}</p>
                 <p><strong>language:</strong> ${element.language}</p>
             `;
-      contenedorElemento.append(div);
-    });
-  } else {
-    console.log("No se encontraron películas.");
-  }
+            contenedorElemento.append(div);
+        });
+    } else {
+        console.log("No se encontraron películas.");
+    }
 }
 //*VEHICULOS***************************************************
 async function show_all_vehicles() {
-  var vehiculos = [];
-  console.log("Inicio de la búsqueda de PELICULAS");
-  for (let i = 1; i <= 4; i++) {
-    try {
-      let datos = await get_data(urlSTAR.vehicles + "/?page=" + i);
-      let data = datos.results;
-      for (let j = 0; j < data.length; j++) {
-        let element = data[j];
-        vehiculos.push(element);
-      }
-    } catch (error) {
-      console.error("Ocurrió un error:", error);
-    }
-  }
-  console.log(vehiculos);
-  if (vehiculos.length > 0) {
-    contenedorElemento.innerHTML = "";
+    let vehiculos;
+    console.log("Inicio de la búsqueda de PELICULAS");
+    vehiculos = await call_data(4,point=5)
+    console.log(vehiculos);
+    if (vehiculos.length > 0) {
+        contenedorElemento.innerHTML = "";
 
-    vehiculos.forEach((element) => {
-      const div = document.createElement("div");
-      div.classList.add("elemento");
-      div.innerHTML = `
+        vehiculos.forEach((element) => {
+            const div = document.createElement("div");
+            div.classList.add("elemento");
+            div.innerHTML = `
                 <h2>${element.name}</h2>
                 <p><br><strong>model:</strong> ${element.model}</p>
                 <p><strong>manufacturer:</strong> ${element.manufacturer}</p>
@@ -314,30 +296,23 @@ async function show_all_vehicles() {
                 <p><strong>cargo capacity:</strong> ${element.cargo_capacity}</p>
                 <p><strong>length:</strong> ${element.length}</p>
             `;
-      contenedorElemento.append(div);
-    });
-  } else {
-    console.log("No se encontraron películas.");
-  }
+            contenedorElemento.append(div);
+        });
+    } else {
+        console.log("No se encontraron películas.");
+    }
 }
 //*PLANETAS**************************************************
 async function show_all_planets() {
-  var planetas = [];
-  console.log("Inicio de la búsqueda de PELICULAS");
-  contenedorElemento.innerHTML = "";
-  for (let i = 1; i <= 61; i++) {
-    try {
-      let data = await get_data(urlSTAR.planets + "/" + i + "/");
-      planetas.push(data);
-    } catch (error) {
-      console.error("Ocurrió un error:", error);
-    }
-  }
-  if (planetas.length > 0) {
-    planetas.forEach((element) => {
-      const div = document.createElement("div");
-      div.classList.add("elemento");
-      div.innerHTML = `
+    let planetas;
+    contenedorElemento.innerHTML = "";
+    planetas = await call_data(61,point=2);
+
+    if (planetas.length > 0) {
+        planetas.forEach((element) => {
+            const div = document.createElement("div");
+            div.classList.add("elemento");
+            div.innerHTML = `
                 <h2>${element.name}</h2>
                 <p><br><strong>rotation period:</strong> ${element.rotation_period}</p>
                 <p><strong>orbital period:</strong> ${element.orbital_period}</p>
@@ -348,22 +323,21 @@ async function show_all_planets() {
                 <p><strong>surface water:</strong> ${element.surface_water}</p>
                 <p><strong>population:</strong> ${element.population}</p>
             `;
-      contenedorElemento.append(div);
-    });
-  } else {
-    console.log("No se encontraron películas.");
-  }
+            contenedorElemento.append(div);
+        });
+    } else {
+        console.log("No se encontraron películas.");
+    }
 }
 // RECARGA INICIAL******************++++++
 window.onload = function () {
-  show_all_films();
-  console.log("Consulta de peliculas");
-  const consultasPeliculas = ["Titulo", "Fecha", "director", "episodio"];
-  hacerConsultasBarra(consultasPeliculas);
-  agregarEventoConsultas();
+    show_all_films();
+    console.log("Consulta de peliculas");
+    const consultasPeliculas = ["Titulo", "Fecha", "director", "episodio"];
+    hacerConsultasBarra(consultasPeliculas);
+    agregarEventoConsultas();
 };
 
-const colorOjos =function(){
+const color_de_piel =function(){
     contenedorElemento.innerHTML = "";
 }
-botonesCategoriasFuncion()
