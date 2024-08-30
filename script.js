@@ -3,6 +3,8 @@ const contenedorElemento = document.querySelector("#contenedor-elementos")
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const consultasBarra = document.getElementById("barra-consultas");
 
+console.log(botonesCategorias)
+
 const urlSTAR = {
     "films": "https://swapi.py4e.com/api/films/",
     "people": "https://swapi.py4e.com/api/people/",
@@ -29,8 +31,6 @@ async function get_data(url) {
     }
 }
 //---------------------------------------------------
-// ESTA BUSQUEDA FUNCIONA A LA PERFECCION, REALIZAR UNA POR CADA UNO DE LOS CINCO PARA MOSTRAR TODAS DESPUES DE ESO FILTRAMOS
-
 botonesCategorias.forEach(boton => {
     boton.addEventListener("click", (e) => {
         botonesCategorias.forEach(boton => boton.classList.remove("active"));
@@ -41,24 +41,20 @@ botonesCategorias.forEach(boton => {
                 show_all_films()
                 console.log("Consulta de peliculas");
                 const consultasPeliculas = ["titulo", "fecha", "director", "episodio"];
-
                 hacerConsultasBarra(consultasPeliculas)
                 agregarEventoConsultas()
                 break;
             case "personajes":
                 show_all_characters();
                 const consultasPersonajes = ["Color de ojos", "Color de piel", "Genero", "Color de pelo"];
-
                 hacerConsultasBarra(consultasPersonajes)
                 agregarEventoConsultas()
                 break;
             case "naves":
                 show_all_starships()
                 const consultasNaves = ["Pilotos", "peliculas que estuvieron", "MGLT", "manufacturer"];
-
                 hacerConsultasBarra(consultasNaves)
                 agregarEventoConsultas()
-
                 break;
             case "especies":
                 show_all_species()
@@ -68,16 +64,14 @@ botonesCategorias.forEach(boton => {
                 break;
             case "vehiculos":
                 show_all_vehicles()
-
                 const consultasVehiculos = ["Color de ojos", "Color de piel", "Genero", "Color de pelo"];
                 hacerConsultasBarra(consultasVehiculos)
                 agregarEventoConsultas()
                 break;
             case "planetas":
-                // AQUI SE HACE LA CONSULTA DE VEHICULOS
-                console.log("Consulta de planetas");
-                const consultasPlanetas = ["Color de ojos", "Color de piel", "Genero", "Color de pelo"];
-                hacerConsultasBarra(consultasVehiculos)
+                show_all_planets()
+                const consultasPlanetas = ["poblacion", "diametro", "clima"];
+                hacerConsultasBarra(consultasPlanetas)
                 agregarEventoConsultas()
                 break;
             default:
@@ -105,7 +99,7 @@ function agregarEventoConsultas() {
         });
     });
 }
-// ESTA FUNCION HACE LAS SUBCONSULTAS DE LA PAGINA DE LA 1 A LA 4 PARA PODER REALIZAR LAS ADECUADAS, HAY QUE PERSONALIZARLA YA SEA CON UN ARRAY Y SE LE HACE FOREACH O ALGO ASI PARA PODER REALIZARLA AUTOMATICA
+
 function hacerConsultasBarra(array) {
     consultasBarra.innerHTML = ``
     array.forEach((elemento) => {
@@ -142,7 +136,7 @@ async function show_all_characters() {
                     <p class="Color_de_piel"><strong>Color de piel:</strong> ${element.skin_color}</p>
                     <p class="Color_de_ojos"><strong>Color de ojos:</strong> ${element.eye_color}</p>
                     <p class="Año_de_nacimiento"><strong>fecha de nacimiento: </strong>${element.birth_year}</p>
-                    <p class=""><strong>Genero: </strong>${element.gender}</p>
+                    <p class="genero"><strong>Genero: </strong>${element.gender}</p>
         `;
         contenedorElemento.append(div);
     })
@@ -295,13 +289,13 @@ async function show_all_vehicles() {
     }
 }
 //*PLANETAS**************************************************
-async function show_all_species() {
+async function show_all_planets() {
     var planetas = [];
     console.log("Inicio de la búsqueda de PELICULAS");
     contenedorElemento.innerHTML = "";
     for (let i = 1; i <= 61; i++) {
         try {
-            let data = await get_data(urlSTAR.species + "/" + i + "/");
+            let data = await get_data(urlSTAR.planets + "/" + i + "/");
             planetas.push(data);
         } catch (error) {
             console.error("Ocurrió un error:", error);
@@ -313,14 +307,14 @@ async function show_all_species() {
             div.classList.add("elemento");
             div.innerHTML = `
                 <h2>${element.name}</h2>
-                <p><br><strong>classification:</strong> ${element.classification}</p>
-                <p><strong>designation:</strong> ${element.designation}</p>
-                <p><strong>average height:</strong> ${element.average_height}</p>
-                <p><strong>skin colors:</strong> ${element.skin_colors}</p>
-                <p><strong>hair colors:</strong> ${element.hair_colors}</p>
-                <p><strong>eye colors:</strong> ${element.eye_colors}</p>
-                <p><strong>average lifespan:</strong> ${element.average_lifespan}</p>
-                <p><strong>language:</strong> ${element.language}</p>
+                <p><br><strong>rotation period:</strong> ${element.rotation_period}</p>
+                <p><strong>orbital period:</strong> ${element.orbital_period}</p>
+                <p><strong>diameter:</strong> ${element.diameter}</p>
+                <p><strong>climate:</strong> ${element.climate}</p>
+                <p><strong>gravity:</strong> ${element.gravity}</p>
+                <p><strong>terrain:</strong> ${element.terrain}</p>
+                <p><strong>surface water:</strong> ${element.surface_water}</p>
+                <p><strong>population:</strong> ${element.population}</p>
             `;
             contenedorElemento.append(div);
         });
