@@ -2,8 +2,6 @@ const contenedorElemento = document.querySelector("#contenedor-elementos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const consultasBarra = document.getElementById("barra-consultas");
 
-console.log(botonesCategorias);
-
 const urlSTAR = {
   films: "https://swapi.py4e.com/api/films/",
   people: "https://swapi.py4e.com/api/people/",
@@ -13,7 +11,6 @@ const urlSTAR = {
   vehicles: "https://swapi.py4e.com/api/vehicles/",
   planets: "https://swapi.py4e.com/api/planets/",
 };
-//*********************************************************************
 async function get_data(url) {
   try {
     console.log("OBTENCION DE DATOS GET_DATA");
@@ -29,93 +26,97 @@ async function get_data(url) {
     console.error("Error en la solicitud:", error);
   }
 }
-//---------------------------------------------------
-botonesCategorias.forEach((boton) => {
-  boton.addEventListener("click", (e) => {
-    botonesCategorias.forEach((boton) => boton.classList.remove("active"));
-    e.currentTarget.classList.add("active");
-    let per = e.currentTarget.id;
-    switch (per) {
-      case "peliculas":
-        show_all_films();
-        console.log("Consulta de peliculas");
-        const consultasPeliculas = ["Titulo", "Fecha", "Director", "Episodio"];
-        hacerConsultasBarra(consultasPeliculas);
-        agregarEventoConsultas();
-        break;
-      case "personajes":
-        show_all_characters();
-        const consultasPersonajes = [
-          {
-            id: "Color_de_ojos",
-            nombre:"Color de ojos",
-            funcion: function(){
-                contenedorElemento.innerHTML = "";
-            },
-          },
-          {
-            id: "Color_de_piel",
-            nombre:"Color de piel",
-            funcion: color_de_piel,
-          },
-          {
-            id: "Genero",
-            nombre: "Genero",
-            funcion: function(){
-                contenedorElemento.innerHTML = "";
-            },
-          },
-          {
-            id: "Color_de_pelo",
-            nombre: "Color de pelo",
-            funcion: function(){
-                contenedorElemento.innerHTML = "";
-            },
-          },
-        ];
-        hacerConsultasBarra(consultasPersonajes);
-        agregarEventoConsultas(consultasPersonajes);
-        break;
-      case "naves":
-        show_all_starships();
-        const consultasNaves = ["Pilotos", "Pasajeros", "MGLT", "Manufacturer"];
-        hacerConsultasBarra(consultasNaves);
-        agregarEventoConsultas();
-        break;
-      case "especies":
-        show_all_species();
-        const consultasEspecies = [
-          "Clasificacion",
-          "Skin color",
-          "Language",
-          "Planeta",
-        ];
-        hacerConsultasBarra(consultasEspecies);
-        agregarEventoConsultas();
-        break;
-      case "vehiculos":
-        show_all_vehicles();
-        const consultasVehiculos = [
-          "Color de ojos",
-          "Color de piel",
-          "Genero",
-          "Color de pelo",
-        ];
-        hacerConsultasBarra(consultasVehiculos);
-        agregarEventoConsultas();
-        break;
-      case "planetas":
-        show_all_planets();
-        const consultasPlanetas = ["Poblacion", "Diametro", "Clima", "Terreno"];
-        hacerConsultasBarra(consultasPlanetas);
-        agregarEventoConsultas();
-        break;
-      default:
-        console.log("Error en la categoría seleccionada");
-    }
-  });
-});
-
+//************ GENERA TODA LA PAGINA *********************************************
+function botonesCategoriasFuncion(){
+    botonesCategorias.forEach((boton) => {
+      boton.addEventListener("click", (e) => {
+        botonesCategorias.forEach((boton) => boton.classList.remove("active"));
+        e.currentTarget.classList.add("active");
+        let per = e.currentTarget.id;
+        function generarObjeto(item, name, fun){ 
+            const consultasPersonajes = { id: item, nombre: name, funcion: fun };
+            return consultasPersonajes;
+        };
+        let prod;
+        switch (per) {
+          case "peliculas":
+            show_all_films();
+            console.log("Consulta de peliculas");
+            const consultasPeliculas = ["Titulo", "Fecha", "Director", "Episodio"];
+            hacerConsultasBarra(consultasPeliculas);
+            agregarEventoConsultas();
+            break;
+          case "personajes":
+            show_all_characters();
+            const consultasPersonajes = [];
+            prod = generarObjeto("color_de_ojos","Color de ojos", colorOjos)
+            consultasPersonajes.push(prod)
+            prod = generarObjeto("color_de_piel","Color de piel", colorOjos)
+            consultasPersonajes.push(prod)
+            prod = generarObjeto("Color_de_pelo","Color de pelo",colorOjos)
+            consultasPersonajes.push(prod)
+            prod = generarObjeto("genero","Genero",colorOjos)
+            consultasPersonajes.push(prod)
+            hacerConsultasBarra(consultasPersonajes);
+            agregarEventoConsultas(consultasPersonajes);
+            break;
+          case "naves":
+            show_all_starships();
+            const consultasNaves = ["Pilotos", "Pasajeros", "MGLT", "Manufacturer"];
+            prod = generarObjeto("pilotos","Pilotos", colorOjos)
+            consultasNaves.push(prod)
+            prod = generarObjeto("pasajeros","Pasajeros", colorOjos)
+            consultasNaves.push(prod)
+            prod = generarObjeto("mglt","MGLT", colorOjos)
+            consultasNaves.push(prod)
+            prod = generarObjeto("manufacturer","Manufacturer", colorOjos)
+            consultasNaves.push(prod)
+            hacerConsultasBarra(consultasNaves);
+            agregarEventoConsultas(consultasNaves);
+            break;
+          case "especies":
+            show_all_species();
+            const consultasEspecies = [
+              "Clasificacion",
+              "Skin color",
+              "Language",
+              "Planeta",
+            ];
+            hacerConsultasBarra(consultasEspecies);
+            agregarEventoConsultas();
+            break;
+          case "vehiculos":
+            show_all_vehicles();
+            const consultasVehiculos = [
+              "Color de ojos",
+              "Color de piel",
+              "Genero",
+              "Color de pelo",
+            ];
+            hacerConsultasBarra(consultasVehiculos);
+            agregarEventoConsultas();
+            break;
+          case "planetas":
+            show_all_planets();
+            const consultasPlanetas = ["Poblacion", "Diametro", "Clima", "Terreno"];
+            hacerConsultasBarra(consultasPlanetas);
+            agregarEventoConsultas();
+            break;
+          default:
+            console.log("Error en la categoría seleccionada");
+        }
+      });
+    });
+};
+function hacerConsultasBarra(array) {
+    consultasBarra.innerHTML = ``;
+    array.forEach((elemento) => {
+      consultasBarra.innerHTML += `
+          <li>
+              <button id="${elemento.id}" class="boton-menu-consulta boton-categoria-consulta"><span>${elemento.nombre}</span></button>
+          </li>`;
+    });
+  };
 function agregarEventoConsultas(info) {
   const botonesCategoriasConsulta = document.querySelectorAll(
     ".boton-categoria-consulta"
@@ -138,16 +139,9 @@ function agregarEventoConsultas(info) {
   });
 }
 
-function hacerConsultasBarra(array) {
-  consultasBarra.innerHTML = ``;
-  array.forEach((elemento) => {
-    consultasBarra.innerHTML += `
-        <li>
-            <button id="${elemento.id}" class="boton-menu-consulta boton-categoria-consulta"><span>${elemento.nombre}</span></button>
-        </li>`;
-  });
-}
-//*PERSONAJES**************************************************
+// ***************************************************************
+//*PERSONAJES*****************************************************
+// *************************************************************
 async function show_all_characters() {
   console.log("Inicio de la búsqueda de personajes");
   var personajes = [];
@@ -370,6 +364,7 @@ window.onload = function () {
   agregarEventoConsultas();
 };
 
-const color_de_piel =function(){
+const colorOjos =function(){
     contenedorElemento.innerHTML = "";
 }
+botonesCategoriasFuncion()
