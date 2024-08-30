@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
-
 :root {
     --clr-main: #d0f04f;
     --clr-main-light: #f35c05;
@@ -9,22 +8,22 @@
     --clr-black: #1e1c1c;
     --clr-elemento: #0000009a;
 }
+.contenedor-cabecera {
+    background-color: transparent;
 
+}
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
 }
-
 h1, h2, h3, h4, h5, h6, p, a, input, textarea {
     margin: 0;
 }
-
 ul {
     list-style-type: none;
 }
-
 a {
     text-decoration: none;
 }
@@ -85,7 +84,6 @@ aside {
     width: 80%;
     object-fit: cover;
 }
-
 /* BARRA CONSULTAS */ 
 .barra-cosultas {
     background-color: var(--clr-black);
@@ -94,8 +92,6 @@ aside {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0;
     margin: 0;
-    position: sticky;
-    top: 0px;
 }
 .boton-menu-consulta {
     background-color: transparent;
@@ -128,11 +124,13 @@ aside {
     background-size: cover;
 }
 main {
-    background-color: var(--clr-main-light);
+    background-image: url("https://i.gifer.com/CQb9.gif");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-rows: 1fr 5fr;
 }
 .titulo-principal {
     color: var(--clr-main-light);
@@ -152,4 +150,41 @@ main {
     margin: 10px;
     padding: 10px;
     background-color: var(--clr-elemento);
+}
+@media (max-width: 900px) {
+    .contenedor-elementos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .barra-cosultas {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 600px) {
+    .contenedor-elementos {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    aside {
+        padding:0;
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        height: auto;
+    }
+    .menu {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .boton-menu {
+        font-size: 3vw;
+    }
+    .imagenMenu {
+        width: 70%;
+    }
+    header,footer {
+        display: none;
+    }
 }

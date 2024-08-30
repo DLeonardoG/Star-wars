@@ -1,4 +1,3 @@
-
 const contenedorElemento = document.querySelector("#contenedor-elementos")
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const consultasBarra = document.getElementById("barra-consultas");
@@ -40,7 +39,7 @@ botonesCategorias.forEach(boton => {
             case "peliculas":
                 show_all_films()
                 console.log("Consulta de peliculas");
-                const consultasPeliculas = ["titulo", "fecha", "director", "episodio"];
+                const consultasPeliculas = ["Titulo", "Fecha", "Director", "Episodio"];
                 hacerConsultasBarra(consultasPeliculas)
                 agregarEventoConsultas()
                 break;
@@ -52,13 +51,13 @@ botonesCategorias.forEach(boton => {
                 break;
             case "naves":
                 show_all_starships()
-                const consultasNaves = ["Pilotos", "peliculas que estuvieron", "MGLT", "manufacturer"];
+                const consultasNaves = ["Pilotos", "Pasajeros", "MGLT", "Manufacturer"];
                 hacerConsultasBarra(consultasNaves)
                 agregarEventoConsultas()
                 break;
             case "especies":
                 show_all_species()
-                const consultasEspecies = ["clasificacion", "Skin color", "language", "planeta"];
+                const consultasEspecies = ["Clasificacion", "Skin color", "Language", "Planeta"];
                 hacerConsultasBarra(consultasEspecies)
                 agregarEventoConsultas()
                 break;
@@ -70,7 +69,7 @@ botonesCategorias.forEach(boton => {
                 break;
             case "planetas":
                 show_all_planets()
-                const consultasPlanetas = ["poblacion", "diametro", "clima"];
+                const consultasPlanetas = ["Poblacion", "Diametro", "Clima","Terreno"];
                 hacerConsultasBarra(consultasPlanetas)
                 agregarEventoConsultas()
                 break;
@@ -79,6 +78,7 @@ botonesCategorias.forEach(boton => {
         }
     });
 });
+
 function agregarEventoConsultas() {
     const botonesCategoriasConsulta = document.querySelectorAll(".boton-categoria-consulta");
     botonesCategoriasConsulta.forEach(boton => {
@@ -87,15 +87,6 @@ function agregarEventoConsultas() {
             e.currentTarget.classList.add("active-consulta");
             console.log(e.currentTarget)
             // DE AQUI PARA ABAJO SE HACEN LAS CONSULTAS POR EL SUB ELEMENTO DE LA SUBLISTA
-            // const prueba = document.createElement("div");
-            // prueba.classList.add("elemento");
-            // prueba.innerHTML = ""
-            // prueba.innerHTML =  `
-            // <h2>${e.currentTarget.id}</h2>`
-            // console.log(prueba)
-            // contenedorElemento.prepend(prueba)
-            // contenedorElemento.innerHTML = "";
-            // show_all_characters()
         });
     });
 }
@@ -112,17 +103,19 @@ function hacerConsultasBarra(array) {
 //*PERSONAJES**************************************************
 async function show_all_characters() {
     console.log("Inicio de la búsqueda de personajes");
-    contenedorElemento.innerHTML = "";
-    try {
-        let data = await get_data(urlSTAR.people);
-        var personajes = data.results
-        if (personajes) {
-            console.log("Personajes obtenidos:", personajes);
-        } else {
-            console.log("No se encontraron personajes.");
+    var personajes = [];
+    console.log("Inicio de la búsqueda de personajes");
+    for (let i = 1; i <= 9; i++) {
+        try {
+            let datos = await get_data(urlSTAR.people + "/?page=" + i);
+            let data = datos.results
+            for (let j = 0; j < data.length; j++) {
+                let element = data[j];
+                personajes.push(element)
+            }
+        } catch (error) {
+            console.error("Ocurrió un error:", error);
         }
-    } catch (error) {
-        console.error("Ocurrió un error:", error);
     }
     // AQUI SE DIBUJAN LOS ELEMENTOS CON EL FOR EACH PARA MEJOR SINTAXIS Y PORQUE ESTA MAS CHIMBA MMH
     personajes.forEach((element) => {
@@ -321,4 +314,12 @@ async function show_all_planets() {
     } else {
         console.log("No se encontraron películas.");
     }
+}
+// RECARGA INICIAL******************++++++
+window.onload = function () {
+    show_all_films()
+    console.log("Consulta de peliculas");
+    const consultasPeliculas = ["titulo", "fecha", "director", "episodio"];
+    hacerConsultasBarra(consultasPeliculas)
+    agregarEventoConsultas()
 }
