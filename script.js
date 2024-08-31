@@ -17,9 +17,7 @@ const urlSTAR = [
 //*********************************************************************
 async function get_data(url) {
     try {
-        console.log("OBTENCION DE DATOS GET_DATA");
         const res = await fetch(url);
-        console.log(url)
         if (res.ok) {
             const stars = await res.json();
             // console.log("Datos obtenidos:", stars.results);
@@ -48,13 +46,13 @@ function botonesCategoriasFuncion(){
           show_all_films();
           console.log("Consulta de peliculas");
           const consultasPeliculas = [];
-          prod = generarObjeto("titulo","Titulo", colorOjos)
+          prod = generarObjeto("title","Titulo", opciones_all)
           consultasPeliculas.push(prod)
-          prod = generarObjeto("fecha","Fecha", colorOjos)
+          prod = generarObjeto("release_date","Fecha", opciones_all)
           consultasPeliculas.push(prod)
-          prod = generarObjeto("director","Director", colorOjos)
+          prod = generarObjeto("director","Director", opciones_all)
           consultasPeliculas.push(prod)
-          prod = generarObjeto("episodio","Episodio", colorOjos)
+          prod = generarObjeto("producer","producer", opciones_all)
           consultasPeliculas.push(prod)
           hacerConsultasBarra(consultasPeliculas);
           agregarEventoConsultas(consultasPeliculas);
@@ -62,13 +60,13 @@ function botonesCategoriasFuncion(){
         case "personajes":
           show_all_characters();
           const consultasPersonajes = [];
-          prod = generarObjeto("color_de_ojos","Color de ojos", opciones)
+          prod = generarObjeto("eye_color","Color de ojos", opciones_all)
           consultasPersonajes.push(prod)
-          prod = generarObjeto("color_de_piel","Color de piel", colorOjos)
+          prod = generarObjeto("skin_color","Color de piel", opciones_all)
           consultasPersonajes.push(prod)
-          prod = generarObjeto("Color_de_pelo","Color de pelo",colorOjos)
+          prod = generarObjeto("hair_color","Color de pelo",opciones_all)
           consultasPersonajes.push(prod)
-          prod = generarObjeto("genero","Genero",colorOjos)
+          prod = generarObjeto("gender","Genero",opciones_all)
           consultasPersonajes.push(prod)
           hacerConsultasBarra(consultasPersonajes);
           agregarEventoConsultas(consultasPersonajes);
@@ -76,13 +74,13 @@ function botonesCategoriasFuncion(){
         case "naves":
           show_all_starships();
           const consultasNaves = [];
-          prod = generarObjeto("pilotos","Pilotos", colorOjos)
+          prod = generarObjeto("name","Nombre de la nave", opciones_all)
           consultasNaves.push(prod)
-          prod = generarObjeto("pasajeros","Pasajeros", colorOjos)
+          prod = generarObjeto("passengers","Pasajeros", opciones_all)
           consultasNaves.push(prod)
-          prod = generarObjeto("mglt","MGLT", colorOjos)
+          prod = generarObjeto("MGLT","MGLT", opciones_all)
           consultasNaves.push(prod)
-          prod = generarObjeto("manufacturer","Manufacturer", colorOjos)
+          prod = generarObjeto("manufacturer","Manufacturer", opciones_all)
           consultasNaves.push(prod)
           hacerConsultasBarra(consultasNaves);
           agregarEventoConsultas(consultasNaves);
@@ -90,13 +88,13 @@ function botonesCategoriasFuncion(){
         case "especies":
           show_all_species();
           const consultasEspecies = [];
-          prod = generarObjeto("clasificacion","Clasificacion", colorOjos)
+          prod = generarObjeto("classification","Clasificacion", opciones_all)
           consultasEspecies.push(prod)
-          prod = generarObjeto("skin_color","Skin color", colorOjos)
+          prod = generarObjeto("skin_colors","Skin color", opciones_all)
           consultasEspecies.push(prod)
-          prod = generarObjeto("language","Language", colorOjos)
+          prod = generarObjeto("language","Language", opciones_all)
           consultasEspecies.push(prod)
-          prod = generarObjeto("planeta","Planeta", colorOjos)
+          prod = generarObjeto("average_lifespan","Promedio de vida", opciones_all)
           consultasEspecies.push(prod)
           hacerConsultasBarra(consultasEspecies);
           agregarEventoConsultas(consultasEspecies);
@@ -104,13 +102,13 @@ function botonesCategoriasFuncion(){
         case "vehiculos":
           show_all_vehicles();
           const consultasVehiculos = [];
-          prod = generarObjeto("clase","Clase", colorOjos)
+          prod = generarObjeto("name","Nombre", opciones_all)
           consultasVehiculos.push(prod)
-          prod = generarObjeto("clase","Clase", colorOjos)
+          prod = generarObjeto("cost_in_credits","costo en créditos", opciones_all)
           consultasVehiculos.push(prod)
-          prod = generarObjeto("clase","Clase", colorOjos)
+          prod = generarObjeto("passengers","Pasajeros", opciones_all)
           consultasVehiculos.push(prod)
-          prod = generarObjeto("clase","Clase", colorOjos)
+          prod = generarObjeto("cargo_capacity","capacidad de carga", opciones_all)
           consultasVehiculos.push(prod)
           hacerConsultasBarra(consultasVehiculos);
           agregarEventoConsultas(consultasVehiculos);
@@ -118,13 +116,13 @@ function botonesCategoriasFuncion(){
         case "planetas":
           show_all_planets();
           const consultasPlanetas = [];
-          prod = generarObjeto("poblacion","Poblacion", colorOjos)
+          prod = generarObjeto("population","Poblacion", colorOjos)
           consultasPlanetas.push(prod)
-          prod = generarObjeto("diametro","Diametro", colorOjos)
+          prod = generarObjeto("diameter","Diametro", colorOjos)
           consultasPlanetas.push(prod)
-          prod = generarObjeto("clima","Clima", colorOjos)
+          prod = generarObjeto("climate","Clima", colorOjos)
           consultasPlanetas.push(prod)
-          prod = generarObjeto("terreno","Terreno", colorOjos)
+          prod = generarObjeto("terrain","Terreno", colorOjos)
           consultasPlanetas.push(prod)
           hacerConsultasBarra(consultasPlanetas);
           agregarEventoConsultas(consultasPlanetas);
@@ -267,6 +265,44 @@ async function show_all_films() {
         console.log("No se encontraron películas.");
     }
 }
+
+async function opciones_all() {
+    let data_all = await call_data(7, 0);
+  
+    let opciones = [];
+    contenedorElemento.innerHTML = "";
+    console.log(data_all);
+    console.log(opciones);
+
+    const id_peliculas_active = document.querySelector(".active-consulta");
+
+    console.log(id_peliculas_active)
+    const identificador = id_peliculas_active.id
+    console.log(identificador)
+
+    function mostrar_data(identificador){
+        function extraer_datos(array) {
+            array.forEach(element => { // verificacion para que no se repitan
+                if (!opciones.includes(element[identificador] ) && element[identificador]  !== 'n/a') {
+                    opciones.push(element[identificador] );
+                }
+            });
+            opciones.sort()
+        }
+        extraer_datos(data_all);
+        console.log(opciones);
+        contenedorElemento.innerHTML = ""; 
+        opciones.forEach(pelicula  => {
+        const div = document.createElement("div");
+                div.classList.add("elemento");
+                div.innerHTML = ` <p style="text-align: center;">${pelicula}</p>
+                `;
+                contenedorElemento.append(div);
+        })
+    }
+    mostrar_data(identificador)
+}
+
 //*NAVES**************************************************
 async function show_all_starships() {
     let naves;
