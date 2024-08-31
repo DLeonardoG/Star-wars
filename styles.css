@@ -5,7 +5,7 @@
     --clr-main-light: #f35c05;
     --clr-white: #ececec;
     --clr-gray: #e2e2e2;
-    --clr-red: #961818;
+    --clr-red: #850e0e;
     --clr-black: #1e1c1c;
     --clr-elemento: #0000009a;
 }
@@ -84,7 +84,8 @@ aside {
     object-fit: cover;
 }
 /* BARRA CONSULTAS */ 
-.barra-cosultas, .barra-sub-cosultas {
+.barra-cosultas, 
+.barra-sub-cosultas {
     background-color: var(--clr-black);
     padding: 0;
     display: grid;
@@ -96,9 +97,9 @@ aside {
     background-color: var(--clr-yellow);
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-
 }
-.boton-menu-consulta, .boton-menu-sub-consulta {
+.boton-menu-consulta, 
+.boton-menu-sub-consulta {
     background-color: transparent;
     border: 0;
     color: var(--clr-white);
@@ -110,10 +111,16 @@ aside {
     box-sizing: border-box;
     font-size: 1.5rem;
 }
-.boton-menu-consulta.active-consulta, .boton-menu-sub-consulta.active {
+.boton-menu-consulta.active-consulta, 
+.boton-menu-sub-consulta.active-sub-consulta {
     background-color: var(--clr-white);
     color: var(--clr-black);
     border-radius: 0.1rem;
+}
+.boton-menu-sub-consulta.active-sub-consulta{
+    background-color: var(--clr-red);
+    color: var(--clr-gray);
+
 }
 .logo-star-wars{
     width: 100%;

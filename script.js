@@ -2,6 +2,7 @@ const contenedorElemento = document.querySelector("#contenedor-elementos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const consultasBarra = document.getElementById("barra-consultas");
 const subConsultasBarra = document.getElementById("barra-sub-consultas");
+const navSubConsultas = document.getElementById("nav-sub-consultas");
 
 console.log(botonesCategorias);
 
@@ -136,6 +137,7 @@ function botonesCategoriasFuncion(){
 };
 function hacerConsultasBarra(array) {
   consultasBarra.innerHTML = ``;
+  subConsultasBarra.classList.add("disabled");
   array.forEach((elemento) => {
     consultasBarra.innerHTML += `
         <li>
@@ -145,14 +147,14 @@ function hacerConsultasBarra(array) {
 };
 function agregarEventoConsultas(info) {
 const botonesCategoriasConsulta = document.querySelectorAll(
-  ".boton-categoria-consulta"
-);
+  ".boton-categoria-consulta");
 botonesCategoriasConsulta.forEach((boton) => {
   boton.addEventListener("click", (e) => {
     botonesCategoriasConsulta.forEach((boton) =>
       boton.classList.remove("active-consulta")
     );
     e.currentTarget.classList.add("active-consulta");
+    subConsultasBarra.classList.add("disabled");
     console.log(info);
     // DE AQUI PARA ABAJO SE HACEN LAS CONSULTAS POR EL SUB ELEMENTO DE LA SUBLISTA
       info.forEach((ele)=> {
@@ -407,19 +409,26 @@ async function opciones() {
   }
   extraer_datos(personajes);
   console.log(opciones);
+  subConsultasBarra.classList.remove("disabled");
     subConsultasBarra.innerHTML = ``;
     opciones.forEach((elemento) => {
       subConsultasBarra.innerHTML += `
           <li>
-              <button id="${elemento}" class="boton-menu-sub-consulta boton-categoria-sub-consulta"><span>${elemento}</span></button>
+              <button id="barraSubConsulta" class="boton-menu-sub-consulta boton-categoria-sub-consulta"><span>${elemento}</span></button>
           </li>`;
     });
 
   const botonSubConsulta = document.querySelectorAll('.boton-menu-sub-consulta');
   botonSubConsulta.forEach(boton => {
-      boton.addEventListener('click', () => {
+      boton.addEventListener('click', (e) => {
+        botonSubConsulta.forEach((boton) =>
+          boton.classList.remove("active-sub-consulta")
+        );
+        e.currentTarget.classList.add("active-sub-consulta");
         console.log("Entreeeeeee")
         console.log(mostrarPersonajesFiltrados(personajes))
+        mostrarPersonajesFiltrados(personajes);
+        // AQUI SE HACE LAS SUB CONSULTAS 
       });
   });
 }
