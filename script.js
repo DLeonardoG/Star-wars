@@ -116,13 +116,13 @@ function botonesCategoriasFuncion(){
         case "planetas":
           show_all_planets();
           const consultasPlanetas = [];
-          prod = generarObjeto("population","Poblacion", colorOjos)
+          prod = generarObjeto("population","Poblacion", opciones_all)
           consultasPlanetas.push(prod)
-          prod = generarObjeto("diameter","Diametro", colorOjos)
+          prod = generarObjeto("diameter","Diametro", opciones_all)
           consultasPlanetas.push(prod)
-          prod = generarObjeto("climate","Clima", colorOjos)
+          prod = generarObjeto("climate","Clima", opciones_all)
           consultasPlanetas.push(prod)
-          prod = generarObjeto("terrain","Terreno", colorOjos)
+          prod = generarObjeto("terrain","Terreno", opciones_all)
           consultasPlanetas.push(prod)
           hacerConsultasBarra(consultasPlanetas);
           agregarEventoConsultas(consultasPlanetas);
@@ -191,6 +191,103 @@ async function call_data(numero, point) {
     }
     return informacion;
 
+//***************************************************
+// *  funciones de las consultas para ser activadas
+//***************************************************
+async function opciones_all() {
+
+    let data_all
+
+    const id_barra_principal_active = document.querySelector(".active");
+    
+    console.log(id_barra_principal_active.id) // el selector activo nos identifica con que valores debemos trabajar para la informacio
+    
+
+    if(id_barra_principal_active.id == "peliculas"){
+        data_all = await call_data(7, 0); // modo de obtencion de datos para peliculas
+    }else if(id_barra_principal_active.id == "personajes"){
+        data_all = await call_data(9, 1); // modo de obtencion de datos
+    }else if(id_barra_principal_active.id == "naves"){
+        data_all = await call_data(4,4); // modo de obtencion de datos
+    }else if(id_barra_principal_active.id == "especies"){
+        data_all = await call_data(37, 3); // modo de obtencion de datos
+    }else if(id_barra_principal_active.id == "vehiculos"){
+        data_all = await call_data(4,point=5); // modo de obtencion de datos
+    }else if(id_barra_principal_active.id == "planetas"){
+        data_all = await call_data(61,point=2); // modo de obtencion de datos
+    }
+  
+    let opciones = [];
+    contenedorElemento.innerHTML = "";
+    console.log(data_all);
+    console.log(opciones);
+
+    const id_consultas_active = document.querySelector(".active-consulta");
+
+    console.log(id_consultas_active)
+    const identificador = id_consultas_active.id
+    console.log(identificador)
+
+    function mostrar_data(identificador){
+        function extraer_datos(array) {
+                array.forEach(element => { // verificacion para que no se repitan
+                if (!opciones.includes(element[identificador] ) && element[identificador]  !== 'n/a') {
+                    opciones.push(element[identificador] );
+                }
+            });
+            console.log(opciones);
+
+            opciones = ordenarArray(opciones);
+
+        }
+        extraer_datos(data_all);
+        console.log(opciones);
+        contenedorElemento.innerHTML = ""; 
+        opciones.forEach(pelicula  => {
+        const div = document.createElement("div");
+                div.classList.add("elemento");
+                div.innerHTML = ` <p style="text-align: center;">${pelicula}</p>
+                `;
+                contenedorElemento.append(div);
+        })
+    }
+    mostrar_data(identificador)
+}
+ // ordenamiento de datos automaticamente si es alfabeticamente o numericamente
+ // si es numeros en string los pasa a numeros y asi se puede hacer la verificacion correctamente
+ // tambien lo hace de forma separada en dado caso que haya numeros y letras en un solo array
+
+function ordenarArray(arr) {
+    // Verifica si el array contiene solo números o solo cadenas
+    const soloNumeros = arr.every(item => !isNaN(item));
+    const soloCadenas = arr.every(item => isNaN(item));
+
+    if (soloNumeros) {
+        // Convierte cadenas numéricas a números y las ordena de menor a mayor
+        return arr
+            .map(item => Number(item))    // Convierte las cadenas a números
+            .sort((a, b) => a - b)        // Ordena los números de menor a mayor
+            .map(item => String(item));   // Convierte los números de vuelta a cadenas
+    } else if (soloCadenas) {
+        // Ordena cadenas alfabéticamente
+        return arr.sort((a, b) => a.localeCompare(b));
+    } else {
+        // Si hay mezcla de números y cadenas, separa y ordena por separado
+        let numeros = arr
+            .filter(item => !isNaN(item)) // Filtra y convierte a números
+            .map(item => Number(item))
+            .sort((a, b) => a - b)        // Ordena de menor a mayor
+            .map(item => String(item));   // Convierte de nuevo a cadenas
+
+        let cadenas = arr
+            .filter(item => isNaN(item))  // Filtra las cadenas
+            .sort((a, b) => a.localeCompare(b)); // Ordena alfabéticamente
+
+        // Combina los arrays ordenados de números y cadenas
+        return [...numeros, ...cadenas];
+    }
+}
+
 //*PERSONAJES**************************************************
 
 }
@@ -219,29 +316,6 @@ async function show_all_characters() {
     return personajes;
 }
 
-// filtro por color de ojos
-
-async function opciones() {
-    let personajes = await call_data(9, 1)
-
-    let opciones = [];
-    contenedorElemento.innerHTML = ""
-    console.log(personajes)
-    function extraer_datos(array) {
-        array.forEach(element => {
-            if (!opciones.includes(element.eye_color)) {
-                opciones.push(element.eye_color);
-            }
-        });
-    }
-    extraer_datos(personajes);
-    console.log(opciones)
-
-    console.log(personajes.filter(p => p.eye_color === "blue"))
-
-}
-
-
 //*peliculas**************************************************
 async function show_all_films() {
     let peliculas;
@@ -264,43 +338,6 @@ async function show_all_films() {
     } else {
         console.log("No se encontraron películas.");
     }
-}
-
-async function opciones_all() {
-    let data_all = await call_data(7, 0);
-  
-    let opciones = [];
-    contenedorElemento.innerHTML = "";
-    console.log(data_all);
-    console.log(opciones);
-
-    const id_peliculas_active = document.querySelector(".active-consulta");
-
-    console.log(id_peliculas_active)
-    const identificador = id_peliculas_active.id
-    console.log(identificador)
-
-    function mostrar_data(identificador){
-        function extraer_datos(array) {
-            array.forEach(element => { // verificacion para que no se repitan
-                if (!opciones.includes(element[identificador] ) && element[identificador]  !== 'n/a') {
-                    opciones.push(element[identificador] );
-                }
-            });
-            opciones.sort()
-        }
-        extraer_datos(data_all);
-        console.log(opciones);
-        contenedorElemento.innerHTML = ""; 
-        opciones.forEach(pelicula  => {
-        const div = document.createElement("div");
-                div.classList.add("elemento");
-                div.innerHTML = ` <p style="text-align: center;">${pelicula}</p>
-                `;
-                contenedorElemento.append(div);
-        })
-    }
-    mostrar_data(identificador)
 }
 
 //*NAVES**************************************************
