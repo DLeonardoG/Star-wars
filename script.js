@@ -1,6 +1,7 @@
 const contenedorElemento = document.querySelector("#contenedor-elementos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const consultasBarra = document.getElementById("barra-consultas");
+const subConsultasBarra = document.getElementById("barra-sub-consultas");
 
 console.log(botonesCategorias);
 
@@ -45,14 +46,22 @@ function botonesCategoriasFuncion(){
         case "peliculas":
           show_all_films();
           console.log("Consulta de peliculas");
-          const consultasPeliculas = ["Titulo", "Fecha", "Director", "Episodio"];
+          const consultasPeliculas = [];
+          prod = generarObjeto("titulo","Titulo", colorOjos)
+          consultasPeliculas.push(prod)
+          prod = generarObjeto("fecha","Fecha", colorOjos)
+          consultasPeliculas.push(prod)
+          prod = generarObjeto("director","Director", colorOjos)
+          consultasPeliculas.push(prod)
+          prod = generarObjeto("episodio","Episodio", colorOjos)
+          consultasPeliculas.push(prod)
           hacerConsultasBarra(consultasPeliculas);
-          agregarEventoConsultas();
+          agregarEventoConsultas(consultasPeliculas);
           break;
         case "personajes":
           show_all_characters();
           const consultasPersonajes = [];
-          prod = generarObjeto("color_de_ojos","Color de ojos", colorOjos)
+          prod = generarObjeto("color_de_ojos","Color de ojos", opciones)
           consultasPersonajes.push(prod)
           prod = generarObjeto("color_de_piel","Color de piel", colorOjos)
           consultasPersonajes.push(prod)
@@ -65,7 +74,7 @@ function botonesCategoriasFuncion(){
           break;
         case "naves":
           show_all_starships();
-          const consultasNaves = ["Pilotos", "Pasajeros", "MGLT", "Manufacturer"];
+          const consultasNaves = [];
           prod = generarObjeto("pilotos","Pilotos", colorOjos)
           consultasNaves.push(prod)
           prod = generarObjeto("pasajeros","Pasajeros", colorOjos)
@@ -79,34 +88,48 @@ function botonesCategoriasFuncion(){
           break;
         case "especies":
           show_all_species();
-          const consultasEspecies = [
-            "Clasificacion",
-            "Skin color",
-            "Language",
-            "Planeta",
-          ];
+          const consultasEspecies = [];
+          prod = generarObjeto("clasificacion","Clasificacion", colorOjos)
+          consultasEspecies.push(prod)
+          prod = generarObjeto("skin_color","Skin color", colorOjos)
+          consultasEspecies.push(prod)
+          prod = generarObjeto("language","Language", colorOjos)
+          consultasEspecies.push(prod)
+          prod = generarObjeto("planeta","Planeta", colorOjos)
+          consultasEspecies.push(prod)
           hacerConsultasBarra(consultasEspecies);
-          agregarEventoConsultas();
+          agregarEventoConsultas(consultasEspecies);
           break;
         case "vehiculos":
           show_all_vehicles();
-          const consultasVehiculos = [
-            "Color de ojos",
-            "Color de piel",
-            "Genero",
-            "Color de pelo",
-          ];
+          const consultasVehiculos = [];
+          prod = generarObjeto("clase","Clase", colorOjos)
+          consultasVehiculos.push(prod)
+          prod = generarObjeto("clase","Clase", colorOjos)
+          consultasVehiculos.push(prod)
+          prod = generarObjeto("clase","Clase", colorOjos)
+          consultasVehiculos.push(prod)
+          prod = generarObjeto("clase","Clase", colorOjos)
+          consultasVehiculos.push(prod)
           hacerConsultasBarra(consultasVehiculos);
-          agregarEventoConsultas();
+          agregarEventoConsultas(consultasVehiculos);
           break;
         case "planetas":
           show_all_planets();
-          const consultasPlanetas = ["Poblacion", "Diametro", "Clima", "Terreno"];
+          const consultasPlanetas = [];
+          prod = generarObjeto("poblacion","Poblacion", colorOjos)
+          consultasPlanetas.push(prod)
+          prod = generarObjeto("diametro","Diametro", colorOjos)
+          consultasPlanetas.push(prod)
+          prod = generarObjeto("clima","Clima", colorOjos)
+          consultasPlanetas.push(prod)
+          prod = generarObjeto("terreno","Terreno", colorOjos)
+          consultasPlanetas.push(prod)
           hacerConsultasBarra(consultasPlanetas);
-          agregarEventoConsultas();
+          agregarEventoConsultas(consultasPlanetas);
           break;
         default:
-          console.log("Error en la categorÃ­a seleccionada");
+          console.log("Error en la categori­a seleccionada");
       }
     });
   });
@@ -367,3 +390,47 @@ const colorOjos = function () {
     contenedorElemento.innerHTML = "";
 }
 botonesCategoriasFuncion()
+
+async function opciones() {
+  let personajes = await call_data(9, 1);
+
+  let opciones = [];
+  contenedorElemento.innerHTML = "";
+  console.log(personajes);
+
+  function extraer_datos(array) {
+      array.forEach(element => {
+          if (!opciones.includes(element.eye_color) && element.eye_color !== 'n/a') {
+              opciones.push(element.eye_color);
+          }
+      });
+  }
+  extraer_datos(personajes);
+  console.log(opciones);
+    subConsultasBarra.innerHTML = ``;
+    opciones.forEach((elemento) => {
+      subConsultasBarra.innerHTML += `
+          <li>
+              <button id="${elemento}" class="boton-menu-sub-consulta boton-categoria-sub-consulta"><span>${elemento}</span></button>
+          </li>`;
+    });
+
+  const botonSubConsulta = document.querySelectorAll('.boton-menu-sub-consulta');
+  botonSubConsulta.forEach(boton => {
+      boton.addEventListener('click', () => {
+        console.log("Entreeeeeee")
+        console.log(mostrarPersonajesFiltrados(personajes))
+      });
+  });
+}
+function mostrarPersonajesFiltrados(personajes) {
+  contenedorElemento.innerHTML = ""; 
+  personajes.forEach(personaje => {
+    const div = document.createElement("div");
+              div.classList.add("elemento");
+              div.innerHTML = ` <p>${personaje.name} - ${personaje.eye_color}</p>
+              `;
+              contenedorElemento.append(div);
+      // contenedorElemento.innerHTML += `<p>${personaje.name} - ${personaje.eye_color}</p>`;
+  });
+}

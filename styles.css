@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 :root {
-    --clr-main: #d0f04f;
+    --clr-main: #cfef52;
+    --clr-yellow: #d89313;
     --clr-main-light: #f35c05;
     --clr-white: #ececec;
     --clr-gray: #e2e2e2;
@@ -83,7 +84,7 @@ aside {
     object-fit: cover;
 }
 /* BARRA CONSULTAS */ 
-.barra-cosultas {
+.barra-cosultas, .barra-sub-cosultas {
     background-color: var(--clr-black);
     padding: 0;
     display: grid;
@@ -91,7 +92,13 @@ aside {
     gap: 0;
     margin: 0;
 }
-.boton-menu-consulta {
+.barra-sub-cosultas {
+    background-color: var(--clr-yellow);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+}
+.boton-menu-consulta, .boton-menu-sub-consulta {
     background-color: transparent;
     border: 0;
     color: var(--clr-white);
@@ -103,7 +110,7 @@ aside {
     box-sizing: border-box;
     font-size: 1.5rem;
 }
-.boton-menu-consulta.active-consulta {
+.boton-menu-consulta.active-consulta, .boton-menu-sub-consulta.active {
     background-color: var(--clr-white);
     color: var(--clr-black);
     border-radius: 0.1rem;
@@ -148,6 +155,9 @@ main {
     margin: 10px;
     padding: 10px;
     background-color: var(--clr-elemento);
+}
+.disabled {
+    display: none;
 }
 @media (max-width: 900px) {
     .contenedor-elementos {
