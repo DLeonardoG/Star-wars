@@ -8,8 +8,7 @@
 | 3. | [Tecnologías Utilizadas](#Tecnologias) |
 | 4. | [Uso del Repositorio](#Uso) |
 | 5. | [Instrucciones de Ejecución](#Instrucciones) |
-| 6. | [Imagenes de la pagina](#Imagenes) |
-| 7. | [Contacto](#Autores) |
+| 6. | [Contacto](#Autores) |
 
 ## Descripcion🚀
 
@@ -44,15 +43,10 @@ Este repositorio contiene el código fuente del proyecto StarWarsApi, conteniend
 2. Configura adecuadamente todo lo adecuado para abrir el index de html.
 3. Abre la app con tu navegador adecuado.
    o puedes acceder desde este link directamente <a href="https://github.com/DLeonardoG/Proyecto_JavaScript_GonzalezDavidPlataErik/tree/master" target="_blank">Pagina de Satr wars</a>
-   
-## Imagenes
-
-<img src="imagenes/readme/inicio.jpeg" alt="Descripción de la imagen" height="500px"> <img src="imagenes/readme/categorias.jpeg" alt="Descripción de la imagen" height="500px"> <img src="imagenes/readme/categoria_especifica.jpeg" alt="Descripción de la imagen" height="500px">
-
-<img src="imagenes/readme/descripcion_1.jpeg" alt="Descripción de la imagen" height="500px"> <img src="imagenes/readme/descripcion_2.jpeg" alt="Descripción de la imagen" height="500px"> <img src="imagenes/readme/carrito_de_compras.jpeg" alt="Descripción de la imagen" height="500px">
 
 
 ## Autores👤
 
 [Leonardo Gonzalez](https://github.com/DLeonardoG) 
+
 [Erik Plata](https://github.com/ErikSneyPlata) 
