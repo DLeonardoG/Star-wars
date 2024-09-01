@@ -120,7 +120,6 @@ aside {
 .boton-menu-sub-consulta.active-sub-consulta{
     background-color: var(--clr-red);
     color: var(--clr-gray);
-
 }
 .logo-star-wars{
     width: 100%;

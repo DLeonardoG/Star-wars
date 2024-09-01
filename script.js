@@ -282,8 +282,6 @@ function ordenarArray(arr) {
 }
 
 //*PERSONAJES**************************************************
-
-
 async function show_all_characters() {
     let personajes
     console.log("Inicio de la búsqueda de personajes");
@@ -448,10 +446,22 @@ async function show_all_planets() {
 // RECARGA INICIAL******************++++++
 window.onload = function () {
     show_all_films();
+    function generarObjeto(item, name, fun){ 
+        const consultasPersonajes = { id: item, nombre: name, funcion: fun };
+        return consultasPersonajes;
+    };
     console.log("Consulta de peliculas");
-    const consultasPeliculas = ["Titulo", "Fecha", "director", "episodio"];
+    const consultasPeliculas = [];
+    prod = generarObjeto("title","Titulo", opciones_all)
+    consultasPeliculas.push(prod)
+    prod = generarObjeto("release_date","Fecha", opciones_all)
+    consultasPeliculas.push(prod)
+    prod = generarObjeto("director","Director", opciones_all)
+    consultasPeliculas.push(prod)
+    prod = generarObjeto("producer","producer", opciones_all)
+    consultasPeliculas.push(prod)
     hacerConsultasBarra(consultasPeliculas);
-    agregarEventoConsultas();
+    agregarEventoConsultas(consultasPeliculas);
 };
 
 const colorOjos = function () {
