@@ -8,7 +8,7 @@
 | 3. | [Tecnologías Utilizadas](#Tecnologias) |
 | 4. | [Uso del Repositorio](#Uso) |
 | 5. | [Instrucciones de Ejecución](#Instrucciones) |
-| 6. | [Contacto](#Autores) |
+| 6. | [Autores](#Autores) |
 
 ## Descripcion🚀
 
@@ -42,7 +42,7 @@ Este repositorio contiene el código fuente del proyecto StarWarsApi, conteniend
 1. Clona el repositorio a tu máquina local. 
 2. Configura adecuadamente todo lo adecuado para abrir el index de html.
 3. Abre la app con tu navegador adecuado.
-   o puedes acceder desde este link directamente <a href="https://github.com/DLeonardoG/Proyecto_JavaScript_GonzalezDavidPlataErik/tree/master" target="_blank">Pagina de Satr wars</a>
+   o puedes acceder desde este link directamente <a href="https://dleonardog.github.io/Proyecto_JavaScript_GonzalezDavidPlataErik/" target="_blank">Pagina de Satr wars</a>
 
 
 ## Autores👤
