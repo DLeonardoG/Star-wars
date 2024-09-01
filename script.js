@@ -170,13 +170,11 @@ botonesCategoriasConsulta.forEach((boton) => {
 async function call_data(numero, point) {
     let informacion = [];
     let data = [];
-
     for (let i = 1; i <= numero; i++) {
         try {
             if (point === 4 || point === 5) {
                 const datos = await get_data(urlSTAR[point] + "?page=" + i);
                 data = datos.results;
-
             } else if (point === 0 || point === 1 || point ===2 || point === 3 ) {
                 const datos = await get_data(urlSTAR[point] + i + "/");
                 data = [datos];
@@ -184,25 +182,21 @@ async function call_data(numero, point) {
             data.forEach(element => {
                 informacion.push(element);
             });
-
         } catch (error) {
             console.error("Ocurrió un error:", error);
         }
     }
     return informacion;
+}
 
 //***************************************************
 // *  funciones de las consultas para ser activadas
 //***************************************************
-async function opciones_all() {
 
+const opciones_all = async function() {
     let data_all
-
     const id_barra_principal_active = document.querySelector(".active");
-    
     console.log(id_barra_principal_active.id) // el selector activo nos identifica con que valores debemos trabajar para la informacio
-    
-
     if(id_barra_principal_active.id == "peliculas"){
         data_all = await call_data(7, 0); // modo de obtencion de datos para peliculas
     }else if(id_barra_principal_active.id == "personajes"){
@@ -216,7 +210,6 @@ async function opciones_all() {
     }else if(id_barra_principal_active.id == "planetas"){
         data_all = await call_data(61,point=2); // modo de obtencion de datos
     }
-  
     let opciones = [];
     contenedorElemento.innerHTML = "";
     console.log(data_all);
@@ -290,7 +283,7 @@ function ordenarArray(arr) {
 
 //*PERSONAJES**************************************************
 
-}
+
 async function show_all_characters() {
     let personajes
     console.log("Inicio de la búsqueda de personajes");
