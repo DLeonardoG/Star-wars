@@ -19,6 +19,8 @@
     }
 }
 
-body {
+.contenedor-elementos {
+    background-size: cover;
+    background-attachment: fixed;
     animation: background 5s linear both infinite
 }

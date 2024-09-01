@@ -3,64 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars</title>
-    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="icon" href="https://png.pngtree.com/png-clipart/20230916/original/pngtree-funny-yellow-star-logo-sticker-on-white-background-vector-png-image_12231049.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <title>Star Wars</title>
 </head>
 <body>
-    <header>
-        <nav class="navBarX">
-            <ul class="lista header__nav">
-                <li>
-                    <form class="nav__form" action="#">
-                        <button class="nav__button" type="submit">
-                            <img class="nav__img img--inicio" src="https://seeklogo.com/images/R/resistance-emblem-star-wars-logo-166BBF934E-seeklogo.com.png" alt="inicio">
-                            <span class="nav__span">Peliculas</span>
-                        </button>
-                    </form>
+    <div class="wrapper">
+        <aside>
+            <nav>
+                <ul class="menu">
+                    <li>
+                        <button id="peliculas" class="boton-menu boton-categoria active"><img class="imagenMenu" src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Starwars_2013_Emote_Rebel_Alliance.png" alt="peliculas"><span>Peliculas</span></button>
                 </li>
                 <li>
-                    <form class="nav__form" action="#">
-                        <button class="nav__button" type="submit">
-                            <img class="nav__img img--inicio" src="images/darthVader.svg" alt="inicio">
-                            <span class="nav__span">Personajes</span>
-                        </button>
-                    </form>
+                        <button id="personajes" class="boton-menu boton-categoria"><img class="imagenMenu" src="https://i.pinimg.com/originals/3f/a9/87/3fa987589666e0b7ec37879811576ffb.png" alt="personajes"><span>Personajes</span></button>
                 </li>
                 <li>
-                    <form class="nav__form" action="#">
-                        <button class="nav__button" type="submit">
-                            <img class="nav__img img--inicio" src="images/darthVader.svg" alt="inicio">
-                            <span class="nav__span">Naves</span>
-                        </button>
-                    </form>
+                        <button id="naves" class="boton-menu boton-categoria"><img class="imagenMenu" src="https://cdn.icon-icons.com/icons2/335/PNG/256/Tie_Fighter_-_02_35418.png" alt="naves"><span>Naves</span></button>
                 </li>
                 <li>
-                    <form class="nav__form" action="#">
-                        <button class="nav__button" type="submit">
-                            <img class="nav__img img--inicio" src="images/darthVader.svg" alt="inicio">
-                            <span class="nav__span">Especies</span>
-                        </button>
-                    </form>
+                        <button id="especies" class="boton-menu boton-categoria"><img class="imagenMenu" src="https://images.vexels.com/media/users/3/185103/isolated/lists/aae04010a88128baec09d29b6702fcd7-simio-criatura-como-icono.png" alt="especies"><span>Especies</span></button>
                 </li>
                 <li>
-                    <form class="nav__form" action="#">
-                        <button class="nav__button" type="submit">
-                            <img class="nav__img img--inicio" src="images/darthVader.svg" alt="inicio">
-                            <span class="nav__span">Vehiculos</span>
-                        </button>
-                    </form>
+                        <button id="vehiculos" class="boton-menu boton-categoria"><img class="imagenMenu" src="https://cdn.icon-icons.com/icons2/335/PNG/256/Millenium_Falcon_-_02_35432.png" alt="vehiculos"><span>Vehiculos</span></button>
+                </li>
+                <li>
+                    <button id="planetas" class="boton-menu boton-categoria"><img class="imagenMenu" src="https://icons.iconarchive.com/icons/3xhumed/mega-games-pack-18/256/Star-Wars-Galactic-Battlegrounds-1-icon.png" alt="vehiculos"><span>Planetas</span></button>
                 </li>
             </ul>
         </nav>
-    </header>
+            <footer>
+                <button id="footer" class="boton-menu-cabe"><img class="imagenMenu" src="https://1000marcas.net/wp-content/uploads/2019/12/logo-StarWars.png" alt="peliculas"></button>
+            </footer>
+        </aside>
     <main>
-        <article>
-            <ol id="barSearch">
-
-            </ol>
-        </article>
+            <div class="contenedor-cabecera">
+                <div class="logo-star-wars">
+                    <img src="https://i.pinimg.com/originals/b6/af/5a/b6af5aeff0ee43a4253fc70c167bb6db.png" alt="Star Wars">
+                </div>
+                <nav>
+                    <ul id="barra-consultas" class="barra-cosultas">
+                        <!-- Aqui entra JS -->
+                    </ul>
+                </nav>
+                <nav id = "nav-sub-consultas">
+                    <ul id="barra-sub-consultas" class="barra-sub-cosultas">
+                        <!-- Aqui entra JS -->
+                    </ul>
+                </nav>
+            </div>
+            <div id="contenedor-elementos" class="contenedor-elementos">
+                <!-- Esto se va a rellenar con JS -->
+            </div>
     </main>
+    </div>
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
