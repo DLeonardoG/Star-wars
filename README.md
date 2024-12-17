@@ -1,51 +1,52 @@
 # StarWarsApi⭐
 
-## Tabla de contenido
-| Indice | Título  |
+## Table of Contents
+| Index | Title  |
 |--|--|
-| 1. | [Descripción](#Descripcion) |
-| 2. | [Características](#Características) |
-| 3. | [Tecnologías Utilizadas](#Tecnologias) |
-| 4. | [Uso del Repositorio](#Uso) |
-| 5. | [Instrucciones de Ejecución](#Instrucciones) |
-| 6. | [Autores](#Autores) |
+| 1. | [Description](#Description) |
+| 2. | [Features](#Features) |
+| 3. | [Technologies Used](#Technologies) |
+| 4. | [Repository Usage](#Usage) |
+| 5. | [Execution Instructions](#Instructions) |
+| 6. | [Authors](#Authors) |
 
-## Descripcion🚀
+## Description🚀
 
-El proyecto se basa en el api de Star Wars presentando diferentes tipos de consultas ejercidas por diferentes tipos de de consultas
+The project is based on the Star Wars API, presenting different types of queries executed through various requests.
 
-## Características🧮
+## Features🧮
 
-1. **Inicio** 🎬: Permite ingresar a la pagina de manera adecuada.
+1. **Home** 🎬: Provides proper access to the page.
 
-2. **Descripcion** 📄: Permite visualizar la descripcion de cada pelicula.
+2. **Description** 📄: Allows users to view the description of each movie.
 
-3. **Categorias** 📄: Permite ver las peliculas divididas por categorias.
+3. **Categories** 📄: Displays movies divided by categories.
 
-4. **Compras** 🛍️: Carrito de compras permite ver las compras y lo añadido para comprar despues.
+4. **Shopping** 🛍️: The shopping cart allows users to view and manage added items for later purchase.
 
-
-## Tecnologias🖥️ 
+## Technologies🖥️ 
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-- **Html** : Se uso para el contenido de la pagina.
-- **Css** : Se uso para el diseño de la pagina.
-- **JavaScript** : Se uso para todo el dinamismo de la pagina.
+- **HTML**: Used for the page content structure.  
+- **CSS**: Used for the page styling and layout.  
+- **JavaScript**: Used for all page interactivity and functionality.
 
-## Uso📝
+## Usage📝
 
-Este repositorio contiene el código fuente del proyecto StarWarsApi, conteniendo todo el funcionamiento interno de la pagina. Cada directorio y archivo está estructurado para facilitar despliegue de la aplicación.
+This repository contains the source code for the StarWarsApi project, including the internal functionality of the page. Each directory and file is structured to facilitate the deployment of the application.
 
-## Instrucciones📐
+## Instructions📐
 
-1. Clona el repositorio a tu máquina local. 
-2. Configura adecuadamente todo lo adecuado para abrir el index de html.
-3. Abre la app con tu navegador adecuado.
-   o puedes acceder desde este link directamente <a href="https://dleonardog.github.io/Proyecto_JavaScript_GonzalezDavidPlataErik/" target="_blank">Pagina de Satr wars</a>
+1. Clone the repository to your local machine.  
+2. Properly configure everything needed to open the HTML index.  
+3. Open the app using an appropriate browser.  
+   Or you can directly access it via this link:  
+   <a href="https://dleonardog.github.io/Star-wars/" target="_blank">Star Wars Page</a>
 
 
-## Autores👤
+
+## Authors👤
 
 [Leonardo Gonzalez](https://github.com/DLeonardoG) 
 
